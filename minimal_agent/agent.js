@@ -1,31 +1,30 @@
 #!/usr/bin/env node
 
 /**
- * Minimal Coding Agent - 第一节课
+ * Minimal Coding Agent - 第一节课 + Plan Mode
  * 根据教程要求：实现最小的coding agent，包含terminal执行和文件IO读写
- * 
- * 这是每个AI Agent学习者的第一节课：
- * 1. Terminal执行：运行命令并获取输出
- * 2. 文件IO：读写文件
- * 3. 基本的Agent循环：理解用户意图 -> 执行操作 -> 返回结果
+ * 新增：Plan Mode 功能，让 Agent 先制定计划，再执行任务
  */
 
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
+const PlanMode = require('./plan_mode');
 
 class MinimalCodingAgent {
     /**
      * 最小的Coding Agent实现
-     * 只包含两个核心功能：
+     * 包含三个核心功能：
      * 1. 执行terminal命令
      * 2. 读写文件
+     * 3. Plan Mode：先制定计划，再执行任务
      */
     
     constructor(workingDirectory = '.') {
         this.workingDirectory = path.resolve(workingDirectory);
         this.history = []; // 记录操作历史
+        this.planMode = new PlanMode(this);  // 新增：Plan Mode 实例
     }
     
     /**
@@ -128,6 +127,51 @@ class MinimalCodingAgent {
     clearHistory() {
         this.history = [];
     }
+    
+    /**
+     * 处理用户请求（带 Plan Mode）
+     * @param {string} userRequest - 用户请求
+     */
+    async handleRequest(userRequest) {
+        console.log(`\n收到请求：${userRequest}`);
+        
+        // 1. 生成计划
+        const plan = this.planMode.generatePlan(userRequest);
+        
+        // 2. 显示计划
+        this.planMode.displayPlan(plan);
+        
+        // 3. 等待用户确认
+        const userChoice = await this.getUserChoice();
+        
+        if (userChoice === '1') {
+            // 4. 执行计划
+            await this.planMode.executePlan(plan);
+        } else if (userChoice === '2') {
+            console.log('✏️ 请描述需要修改的内容...');
+            // 这里可以添加修改计划的逻辑
+        } else {
+            console.log('❌ 计划已取消');
+        }
+    }
+    
+    /**
+     * 获取用户输入
+     * @returns {Promise<string>} 用户选择
+     */
+    getUserChoice() {
+        return new Promise((resolve) => {
+            const rl = readline.createInterface({
+                input: process.stdin,
+                output: process.stdout
+            });
+            
+            rl.question('请选择 (1/2/3): ', (answer) => {
+                rl.close();
+                resolve(answer);
+            });
+        });
+    }
 }
 
 /**
@@ -136,18 +180,26 @@ class MinimalCodingAgent {
  */
 async function main() {
     console.log('='.repeat(60));
-    console.log('🤖 Minimal Coding Agent - 第一节课');
+    console.log('🤖 Minimal Coding Agent - 第一节课 + Plan Mode');
     console.log('='.repeat(60));
-    console.log('这是一个最小的coding agent，包含两个核心功能：');
+    console.log('这是一个最小的coding agent，包含三个核心功能：');
     console.log('1. 执行terminal命令');
     console.log('2. 读写文件');
+    console.log('3. Plan Mode：先制定计划，再执行任务');
     console.log('');
     console.log('命令格式：');
     console.log('  exec <command>     - 执行shell命令');
     console.log('  read <file>        - 读取文件');
     console.log('  write <file>       - 写入文件（然后输入内容，以END结束）');
+    console.log('  plan <request>     - 使用Plan Mode执行任务');
     console.log('  history            - 查看操作历史');
+    console.log('  help               - 显示帮助');
     console.log('  quit               - 退出');
+    console.log('');
+    console.log('💡 Plan Mode使用示例：');
+    console.log('  plan 帮我读取 README.md 文件');
+    console.log('  plan 帮我重构这个代码');
+    console.log('  plan 创建一个新的测试文件');
     console.log('='.repeat(60));
     
     const agent = new MinimalCodingAgent();
@@ -255,9 +307,31 @@ async function main() {
                 }
             }
             
+            else if (command === 'plan') {
+                // Plan Mode 命令
+                const userRequest = args || '请描述你的任务';
+                await agent.handleRequest(userRequest);
+            }
+            
+            else if (command === 'help') {
+                // 帮助命令
+                console.log('\n📋 可用命令：');
+                console.log('  exec <command>     - 执行shell命令');
+                console.log('  read <file>        - 读取文件');
+                console.log('  write <file>       - 写入文件');
+                console.log('  plan <request>     - 使用Plan Mode执行任务');
+                console.log('  history            - 查看操作历史');
+                console.log('  help               - 显示帮助');
+                console.log('  quit               - 退出');
+                console.log('\n💡 Plan Mode使用示例：');
+                console.log('  plan 帮我读取 README.md 文件');
+                console.log('  plan 帮我重构这个代码');
+                console.log('  plan 创建一个新的测试文件');
+            }
+            
             else {
                 console.log(`❌ 未知命令: ${command}`);
-                console.log('可用命令: exec, read, write, history, quit');
+                console.log('可用命令: exec, read, write, plan, history, help, quit');
             }
                 
         } catch (error) {
