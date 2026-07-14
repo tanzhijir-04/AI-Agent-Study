@@ -173,7 +173,7 @@ a:hover{text-decoration:underline}
   #page-scroll{padding:16px 16px 40px}
 }
 /* GSAP init */
-.gsap-fade{opacity:0;transform:translateY(12px)}
+.gsap-fade{transform:translateY(12px)}
 </style>
 </head>
 <body>
@@ -376,8 +376,8 @@ async function loadPage(path){
       const ce=c.querySelector('code');if(ce)hljs.highlightElement(ce);
     }
     uN(path);document.getElementById('page-scroll').scrollTop=0;
-    if(window.gsap)gsap.from('.gsap-fade',{opacity:0,y:18,duration:.35,ease:'power2.out',clearProps:'all'});
-  }catch(e){c.innerHTML='<div class="error-state"><div class="err-msg">&#x26A0;&#xFE0F; '+(e.name==='AbortError'?'请求超时（5秒）':I18N[lang].er+'：'+esc(e.message))+'<br><span style="font-size:13px;color:var(--text-muted)">'+esc(path)+'</span>'+(location.protocol==='file:'?'<br><span style="display:inline-block;margin-top:8px;padding:4px 10px;background:#fef3d9;color:#b8731a;border-radius:6px;font-size:12px">⚠️ 请运行 serve.ps1 启动服务器后访问 http://localhost:8080</span>':'')+'</div></div>'}
+    try{if(window.gsap)gsap.from('.gsap-fade',{opacity:0,y:18,duration:.35,ease:'power2.out',clearProps:'all'})}catch(e){}
+  }catch(e){try{var em=(e.name==='AbortError')?'请求超时（5秒）':(I18N[lang]?I18N[lang].er:'')+'：'+esc(e.message);var ext=(location.protocol==='file:')?'<br><span style="display:inline-block;margin-top:8px;padding:4px 10px;background:#fef3d9;color:#b8731a;border-radius:6px;font-size:12px">⚠️ 请运行 serve.ps1 启动服务器后访问 http://localhost:8080</span>':'';c.innerHTML='<div class="error-state"><div class="err-msg">⚠️ '+em+'<br><span style="font-size:13px;color:var(--text-muted)">'+esc(path)+'</span>'+ext+'</div></div>'}catch(e2){c.innerHTML='<div class="error-state"><div class="err-msg">⚠️ 加载失败</div></div>'}}
   closeM();
 }
 // === MERMAID ===
@@ -417,7 +417,7 @@ function showWelcome(){
   const i=I18N[lang],c=document.getElementById('page-container');
   c.innerHTML='<div id="welcome"><h1 class="gsap-fade">'+i.wT+'</h1><p class="gsap-fade">'+i.wD+'</p><div class="wg gsap-fade"><a class="wc" href="#" onclick="event.preventDefault();loadPage(\'docs/tutorials/README.md\')"><span class="wci">&#x1F4D6;</span><span class="wct">'+i.w1+'</span><span class="wcd">'+i.w1d+'</span></a><a class="wc" href="#" onclick="event.preventDefault();loadPage(\'docs/INDEX.md\')"><span class="wci">&#x1F4D1;</span><span class="wct">'+i.w2+'</span><span class="wcd">'+i.w2d+'</span></a><a class="wc" href="#" onclick="event.preventDefault();loadPage(\'minimal_agent/README.md\')"><span class="wci">&#x1F4BB;</span><span class="wct">'+i.w3+'</span><span class="wcd">'+i.w3d+'</span></a><a class="wc" href="#" onclick="event.preventDefault();loadPage(\'AGENTS.md\')"><span class="wci">&#x1F4DD;</span><span class="wct">'+i.w4+'</span><span class="wcd">'+i.w4d+'</span></a></div></div>';
   history.pushState(null,'','#');document.getElementById('page-scroll').scrollTop=0;closeM();
-  if(window.gsap)gsap.from('.gsap-fade',{opacity:0,y:18,duration:.4,stagger:.08,ease:'power2.out',clearProps:'all'});
+  try{if(window.gsap)gsap.from('.gsap-fade',{opacity:0,y:18,duration:.4,stagger:.08,ease:'power2.out',clearProps:'all'})}catch(e){}
 }
 // === SEARCH ===
 async function perfS(q){
