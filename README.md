@@ -1,7 +1,7 @@
  <div align="center">
    <img src="asset/icon.svg" alt="AI-Agent-Study Logo" width="100" height="100">
    <h1>AI Agent 学习懒人包</h1>
-   12 个主题 · 可运行代码 · 中文文档 · <a href="https://tanzhijir-04.github.io/AI-Agent-Study/">在线知识库</a>
+   14 个主题 · 可运行代码 · 中文文档 · <a href="https://tanzhijir-04.github.io/AI-Agent-Study/">在线知识库</a>
  </div>
  
  <div align="center">
@@ -87,7 +87,7 @@
  AI-Agent-Study/
  ├── docs/
  │   ├── INDEX.md            # 文档索引
- │   └── tutorials/          # 12 章教程
+ │   └── tutorials/          # 14 章教程
  ├── minimal_agent/
  │   ├── agent.js            # 基础 Agent
  │   ├── agent_v2.js         # 带 Memory 的 v2
@@ -119,8 +119,9 @@
  | TUI | 🔄 编写中 | — | — |
  | 可视化 | 🔄 编写中 | — | — |
  | LangChain/LangGraph | 🔄 编写中 | langchain/ 下三个示例 | — |
+ | Harness 执行框架 | ✅ | agent_v2.js + 5篇文档 | — |
  
- ✅ 已完成 · 🔄 编写中 · 📅 待开始
+ ✅ 已完成（含低代码 Agent 和 Harness） · 🔄 编写中 · 📅 待开始
  
  ## 推荐资源
  

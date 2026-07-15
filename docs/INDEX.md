@@ -1,10 +1,10 @@
  # 📚 文档索引
  
- > 按章节和关键词快速定位所有文档。
+ > 按章节和关键词快速定位所有文档。共 14 章（+ 低代码专题）。
  
  ---
  
- ## 📁 章节总览（12 章）
+ ## 📁 章节总览
  
  | # | 章节 | 状态 | 前置依赖 | 文件清单 |
  |---|------|------|----------|---------|
@@ -20,6 +20,8 @@
  | 10 | TUI | 🔄 学习中 | 07 | README.md（占位） |
  | 11 | Visualization | 🔄 学习中 | 03, 07 | README.md（占位） |
  | 12 | LangChain/LangGraph | 🔄 学习中 | 01, 02, 04, 07 | README.md, 01-05（5 篇子文档） |
+ | 13 | LowCode Agent | ✅ 完成 | — | README.md, 01-07（7 篇文档） |
+ | 14 | Harness 执行框架 | ✅ 完成 | 01, 02, 07 | README.md, 01-05（5 篇文档） |
  
  ---
  
@@ -27,7 +29,7 @@
  
  | 关键词 | 所在章节 | 对应代码文件 |
  |--------|---------|-------------|
- | Agent 循环 / 工具调用 | 01 Plan Mode | agent.js, agent_v2.js |
+ | Agent 循环 / Harness / 执行引擎 | 01, 14 | agent.js, agent_v2.js |
  | 短期记忆 / 长期记忆 / 信息提取 | 02 Memory | memory.js, agent_v2.js |
  | Token 压缩 / 摘要 / 剪枝 | 03 Context Compression | demos/demo_context_compression.js |
  | 主从模式 / 消息队列 / 任务调度 | 04 Multi-agent | multi_agent_system.js, message_queue.js, task_scheduler.js, multi_agent_collaboration.js |
@@ -38,6 +40,7 @@
  | TUI 终端界面 | 10 TUI | (待编写) |
  | 可视化 / Tracing | 11 Visualization | (待编写) |
  | Chain / RAG / Memory / Tool / LangGraph / Human-in-loop | 12 LangChain/LangGraph | langchain/basic_chain.py, rag_agent.py, langgraph_agent.py |
+ | think-act-observe / 工具调度 / 执行框架 | 14 Harness | agent_v2.js, 迷你 Harness 示例 |
  
  ---
  
@@ -52,6 +55,7 @@
  1. [Multi-agent 管理指南](tutorials/04-multi-agent/multi_agent_management_guide.md)
  2. [Loop/Workflow 控制指南](tutorials/07-loop-control/loop_control_guide.md)
  3. [Skills/Plugins 系统](tutorials/06-plugins/plugins_skills_system.md)
+ 4. [Harness 执行框架](tutorials/14-harness/01-what-is-harness.md) — 理解 Agent 的引擎层
  
  ### LangChain/LangGraph 专题
  1. [总览](tutorials/12-langchain-langgraph/README.md) — Chain vs Graph 对比
@@ -85,7 +89,4 @@
  
  ---
  
- *索引更新时间：2026年7月14日*
-
-
-
+ *索引更新时间：2026年7月15日*

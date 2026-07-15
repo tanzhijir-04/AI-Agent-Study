@@ -1,6 +1,6 @@
  # 📖 教程总览
  
- > 从零开始的 AI Agent 学习系列。共 12 章，按依赖关系排列。
+ > 从零开始的 AI Agent 学习系列。共 14 章，按依赖关系排列。
  
  ---
  
@@ -19,6 +19,7 @@
      03 --> 11[11 Visualization]
      07 --> 11
      01 & 02 & 04 & 07 --> 12[12 LangChain/LangGraph]
+     01 & 02 & 07 --> 14[14 Harness]
  
      01 -->|推荐入口| 02
      02 --> 07
@@ -44,6 +45,7 @@
  | 10 | [TUI 优化](10-tui/) | 🔄 学习中 | 07 | — |
  | 11 | [可视化](11-visualization/) | 🔄 学习中 | 03, 07 | — |
  | 12 | [LangChain/LangGraph](12-langchain-langgraph/) | 🔄 学习中 | 01, 02, 04, 07 | langchain/basic_chain.py, rag_agent.py, langgraph_agent.py |
+ | 14 | [Harness 执行框架](14-harness/) | ✅ 完成 | 01, 02, 07 | agent_v2.js（Harness 实例） |
  
  ---
  
@@ -58,22 +60,26 @@
  | 🔌 想扩展技能 | 06 → 08 → 09 |
  | 🧠 对 LLM 框架感兴趣 | 01 → 02 → 04 → 07 → 12 |
  | 🖥️ 关注终端和可视化 | 07 → 10 → 11 |
+ | ⚙️ 想理解 Agent 执行引擎 | 01 → 02 → 07 → 14 |
  
  ### 按 Agent 特性
  
  | 特性 | 相关章节 |
  |------|---------|
- | 规划 / 推理 | 01, 07 |
+ | 规划 / 推理 | 01, 07, 14 |
  | 记忆 / 上下文 | 02, 03 |
  | 多 Agent 协作 | 04, 05 |
  | 技能扩展 | 06 |
  | 安全与协议 | 08, 09 |
  | 界面 | 10, 11 |
  | LLM 框架 | 12 |
+ | 执行框架 | 14 |
  
  ### 最新章节
  
- - **12-LangChain/LangGraph** — 从零理解 Chain、Memory、RAG、Tool、Agent 机制，以及 LangGraph 图状态管理与 Human-in-loop。包含 3 个可运行的 Python 示例。
+ - **14-Harness 执行框架** — 拆解 Agent 的"引擎层"：think-act-observe 循环、工具调度、上下文管理、安全边界，以及 Codex CLI 中 Harness 的具体实现。配 5 篇文档 + 可手写运行的迷你 Harness 代码示例。
+ - **13-LowCode Agent** — 低代码 Agent 平台（Coze、Dify）的对比和实用指南。
+ - **12-LangChain/LangGraph** — 从零理解 Chain、Memory、RAG、Tool、Agent 机制，以及 LangGraph 图状态管理与 Human-in-loop。
  - **08-Sandbox** — 进程隔离、文件系统隔离、权限沙箱的完整概念指南。
  
  ---
@@ -93,4 +99,4 @@
  python langchain/langgraph_agent.py
  ```
  
- *更新时间：2026年7月14日*
+ *更新时间：2026年7月15日*

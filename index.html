@@ -15,6 +15,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="asset/icon.svg">
+<link rel="apple-touch-icon" href="asset/icon.svg">
+<link rel="mask-icon" href="asset/icon.svg" color="#4A90E2">
 
 <style>
 
@@ -296,7 +299,7 @@ a{color:var(--accent);text-decoration:none}
 
     <div id="logo">
 
-      <svg width="20" height="20" viewBox="0 0 256 256" fill="none"><rect x="32" y="32" width="192" height="192" rx="28" fill="var(--accent)"/><path d="M96 96h64M96 128h48M96 160h32" stroke="#fff" stroke-width="12" stroke-linecap="round"/></svg>
+      <img src="asset/icon.svg" alt="Logo" width="20" height="20" style="border-radius:4px;display:block">
 
       <div><div class="logo-t">Agent 入门懒人包</div><div class="logo-s" id="logo-sub">从零到一，轻松上手 AI Agent</div></div>
 
@@ -358,7 +361,7 @@ a{color:var(--accent);text-decoration:none}
 
 <script>
 
-const I18N={zh:{s:'搜索文档…',se:'未找到',l:'加载中…',p:'← 上一篇',n:'下一篇 →',h:'首页',e:'加载失败',w1:'教程总览',w1d:'查看 12 章学习路径',w2:'文档索引',w2d:'关键词快速定位',w3:'代码实现',w3d:'完整源码浏览',w4:'贡献指南',w4d:'项目规范和参与方式',sb:'从零到一，轻松上手 AI Agent'},zhTW:{s:'搜尋文檔…',se:'未找到',l:'載入中…',p:'← 上一篇',n:'下一篇 →',h:'首頁',e:'載入失敗',w1:'教程總覽',w1d:'查看 12 章學習路徑',w2:'文檔索引',w2d:'關鍵詞快速定位',w3:'代碼實現',w3d:'完整源碼瀏覽',w4:'貢獻指南',w4d:'項目規範和參與方式',sb:'從零到一，輕鬆上手 AI Agent'},en:{s:'Search…',se:'Not found',l:'Loading…',p:'← Previous',n:'Next →',h:'Home',e:'Failed',w1:'Tutorials',w1d:'View 12 chapters',w2:'Index',w2d:'Quick search',w3:'Source Code',w3d:'Browse source',w4:'Contributing',w4d:'Project guidelines',sb:'From Zero to One, Master AI Agent'}};
+const I18N={zh:{s:'搜索文档…',se:'未找到',l:'加载中…',p:'← 上一篇',n:'下一篇 →',h:'首页',e:'加载失败',w1:'教程总览',w1d:'查看全部学习路径',w2:'文档索引',w2d:'关键词快速定位',w3:'代码实现',w3d:'完整源码浏览',w4:'贡献指南',w4d:'项目规范和参与方式',sb:'从零到一，轻松上手 AI Agent'},zhTW:{s:'搜尋文檔…',se:'未找到',l:'載入中…',p:'← 上一篇',n:'下一篇 →',h:'首頁',e:'載入失敗',w1:'教程總覽',w1d:'查看全部學習路徑',w2:'文檔索引',w2d:'關鍵詞快速定位',w3:'代碼實現',w3d:'完整源碼瀏覽',w4:'貢獻指南',w4d:'項目規範和參與方式',sb:'從零到一，輕鬆上手 AI Agent'},en:{s:'Search…',se:'Not found',l:'Loading…',p:'← Previous',n:'Next →',h:'Home',e:'Failed',w1:'Tutorials',w1d:'View all chapters',w2:'Index',w2d:'Quick search',w3:'Source Code',w3d:'Browse source',w4:'Contributing',w4d:'Project guidelines',sb:'From Zero to One, Master AI Agent'}};
 
 const NAV=[{t:'📖 教程',o:true,i:[
 
@@ -386,7 +389,8 @@ const NAV=[{t:'📖 教程',o:true,i:[
 
 {n:'11 Visualization',p:'docs/tutorials/11-visualization/README.md'},
 
-{n:'12 LangChain/LangGraph',p:'docs/tutorials/12-langchain-langgraph/README.md',c:[{n:'总览',p:'docs/tutorials/12-langchain-langgraph/README.md'},{n:'01 LangChain 入门',p:'docs/tutorials/12-langchain-langgraph/01-langchain-intro.md'},{n:'02 LangChain 核心组件',p:'docs/tutorials/12-langchain-langgraph/02-langchain-core.md'},{n:'03 LangGraph 入门',p:'docs/tutorials/12-langchain-langgraph/03-langgraph-intro.md'},{n:'04 LangGraph 核心',p:'docs/tutorials/12-langchain-langgraph/04-langgraph-core.md'},{n:'05 完整实践',p:'docs/tutorials/12-langchain-langgraph/05-practice.md'}]}]},
+{n:'12 LangChain/LangGraph',p:'docs/tutorials/12-langchain-langgraph/README.md',c:[{n:'总览',p:'docs/tutorials/12-langchain-langgraph/README.md'},{n:'01 LangChain 入门',p:'docs/tutorials/12-langchain-langgraph/01-langchain-intro.md'},{n:'02 LangChain 核心组件',p:'docs/tutorials/12-langchain-langgraph/02-langchain-core.md'},{n:'03 LangGraph 入门',p:'docs/tutorials/12-langchain-langgraph/03-langgraph-intro.md'},{n:'04 LangGraph 核心',p:'docs/tutorials/12-langchain-langgraph/04-langgraph-core.md'},{n:'05 完整实践',p:'docs/tutorials/12-langchain-langgraph/05-practice.md'}]},
+{n:'14 Harness 执行框架',p:'docs/tutorials/14-harness/README.md',c:[{n:'总览',p:'docs/tutorials/14-harness/README.md'},{n:'01 什么是 Harness',p:'docs/tutorials/14-harness/01-what-is-harness.md'},{n:'02 工作原理',p:'docs/tutorials/14-harness/02-how-harness-works.md'},{n:'03 核心设计',p:'docs/tutorials/14-harness/03-core-design.md'},{n:'04 Codex CLI 中的 Harness',p:'docs/tutorials/14-harness/04-harness-in-codex.md'},{n:'05 手写迷你 Harness',p:'docs/tutorials/14-harness/05-build-your-own.md'}]}]},
 
 
 

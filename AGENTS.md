@@ -1,6 +1,6 @@
 # 📝 AI Agent 学习项目 - 贡献者指南
 
-> **更新日期**: 2026年7月14日
+ > **更新日期**: 2026年7月15日
 
 ---
 
@@ -25,7 +25,9 @@ AI-Agent-Study/
 │   │   ├── 09-mcp/                     # 📅 MCP配置
 │   │   ├── 10-tui/                     # 📅 TUI优化
 │   │   ├── 11-visualization/           # 📅 可视化
-│   │   └── 12-langchain-langgraph/     # 🔄 LangChain/LangGraph
+ │   │   ├── 12-langchain-langgraph/     # 🔄 LangChain/LangGraph
+ │   │   ├── 13-lowcode-agent/           # ✅ 低代码Agent
+ │   │   └── 14-harness/                 # ✅ Harness执行框架
 │   └── git/                            # Git相关
 └── minimal_agent/                      # Agent代码实现
     ├── agent_v2.js                     # v2.0主程序（含Memory）
@@ -97,7 +99,8 @@ AI-Agent-Study/
 - [x] Day 4 (7月12日): Multi-agent管理 + 上下文压缩
 - [x] Day 6 (7月12日): Skills/Plugins系统
 - [x] Day 7 (7月14日): Loop/Workflow控制 + 综合实践
-- [x] Day 8 (7月14日): LangChain/LangGraph 框架学习 + 文档 + 代码实现 + Sandbox 概念学习
+ - [x] Day 8 (7月14日): LangChain/LangGraph 框架学习 + 文档 + 代码实现 + Sandbox 概念学习
+ - [x] Day 11 (7月15日): Harness 执行框架概念研究 + 5 篇文档
 
 ### 进行中
 
@@ -117,7 +120,7 @@ AI-Agent-Study/
 
 ---
 
-*指南更新时间：2026年7月14日*
+ *指南更新时间：2026年7月15日*
 
 
 
