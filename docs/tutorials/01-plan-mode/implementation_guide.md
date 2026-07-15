@@ -5,14 +5,14 @@
 ### 想象一下你去超市购物：
 
 **没有 Plan Mode 的情况：**
-`
+```
 你：我要买东西
 Agent：好的，我直接去买
 （结果：可能忘记买牛奶，可能多买了不需要的东西）
-`
+```
 
 **有 Plan Mode 的情况：**
-`
+```
 你：我要买东西
 Agent：好的，我先制定购物清单：
   1. 先检查冰箱里有什么（2分钟）
@@ -22,21 +22,21 @@ Agent：好的，我先制定购物清单：
   
 你：看起来不错，批准执行！
 Agent：好的，开始执行...
-`
+```
 
 **这就是 Plan Mode 的核心：先计划，后执行，你来决定！**
 
 ## 🔍 为什么你的 Agent 需要 Plan Mode？
 
 ### 现在的情况（没有 Plan Mode）：
-`
+```
 用户：帮我重构这个代码
 Agent：好的，我直接开始改
 （可能改错地方，可能漏掉重要文件，用户不知道在做什么）
-`
+```
 
 ### 有了 Plan Mode 之后：
-`
+```
 用户：帮我重构这个代码
 Agent：我分析了你的请求，这是我的计划：
   步骤1：分析现有代码结构（5分钟）
@@ -46,7 +46,7 @@ Agent：我分析了你的请求，这是我的计划：
   
 用户：批准！
 Agent：开始执行步骤1...
-`
+```
 
 ## 🛠️ 简单实现计划（4个步骤）
 
@@ -59,7 +59,8 @@ Agent：开始执行步骤1...
 2. 找到 MinimalCodingAgent 这个类
 3. 理解它有什么功能：
    - xecuteCommand() - 执行命令
-   - eadFile() - 读文件
+   - 
+eadFile() - 读文件
    - writeFile() - 写文件
 
 **我会帮你：** 解释代码的每个部分
@@ -70,7 +71,7 @@ Agent：开始执行步骤1...
 
 **想象一下：** 计划就像一个购物清单
 
-`javascript
+```javascript
 // 一个简单的计划长这样：
 const plan = {
   description: "重构用户认证模块",  // 要做什么
@@ -89,7 +90,7 @@ const plan = {
     }
   ]
 };
-`
+```
 
 **我会帮你：** 设计适合你 agent 的计划格式
 
@@ -133,7 +134,7 @@ const plan = {
 
 ### 1. 新增的 Plan Mode 类
 
-`javascript
+```javascript
 class PlanMode {
   constructor(agent) {
     this.agent = agent;  // 关联到你的agent
@@ -194,11 +195,11 @@ class PlanMode {
     console.log("\n🎉 计划执行完成！");
   }
 }
-`
+```
 
 ### 2. 修改你的 Agent 主类
 
-`javascript
+```javascript
 // 在你的 MinimalCodingAgent 类中添加 Plan Mode 功能
 class MinimalCodingAgent {
   constructor(workingDirectory = '.') {
@@ -246,11 +247,11 @@ class MinimalCodingAgent {
     });
   }
 }
-`
+```
 
 ### 3. 简单的计划生成逻辑
 
-`javascript
+```javascript
 // 根据用户请求生成计划
 analyzeAndCreateSteps(userRequest) {
   const steps = [];
@@ -311,12 +312,12 @@ analyzeAndCreateSteps(userRequest) {
   
   return steps;
 }
-`
+```
 
 ## 🎮 测试场景
 
 ### 场景1：简单任务
-`
+```
 用户：帮我读取 README.md 文件
 Agent：好的，我生成了计划：
   步骤1：读取文件内容（1秒）
@@ -324,10 +325,10 @@ Agent：好的，我生成了计划：
 是否批准？[1/2/3]
 用户：1
 Agent：正在执行... 完成！
-`
+```
 
 ### 场景2：中等任务
-`
+```
 用户：帮我创建一个新的测试文件
 Agent：这是我的计划：
   步骤1：分析测试需求（2秒）
@@ -337,10 +338,10 @@ Agent：这是我的计划：
 是否批准？[1/2/3]
 用户：1
 Agent：开始执行...
-`
+```
 
 ### 场景3：复杂任务
-`
+```
 用户：帮我重构这个模块
 Agent：这是详细的计划：
   步骤1：分析现有代码结构（5分钟）
@@ -351,7 +352,7 @@ Agent：这是详细的计划：
 是否批准？[1/2/3]
 用户：1
 Agent：开始执行步骤1...
-`
+```
 
 ## 📚 学习要点
 

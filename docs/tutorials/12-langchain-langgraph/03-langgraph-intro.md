@@ -43,7 +43,7 @@ while True:
 
 ### 2.1 什么是 StateGraph？
 
-`StateGraph` 是一个有向图，图中的每个节点**读写同一个状态对象**。
+```StateGraph` 是一个有向图，图中的每个节点**读写同一个状态对象**。
 
 ```python
 from typing import TypedDict, List

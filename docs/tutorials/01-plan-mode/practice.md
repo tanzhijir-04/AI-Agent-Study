@@ -6,14 +6,14 @@
 
 Plan Mode 的核心是：**先规划，后执行，用户可控**
 
-`
+```
 传统模式：用户请求 → 直接执行 → 可能出错
 Plan Mode：用户请求 → 制定计划 → 用户确认 → 按计划执行
-`
+```
 
 ### 第二步：设计数据结构
 
-`javascript
+```javascript
 // 计划数据结构
 const plan = {
   id: "plan_" + Date.now(),
@@ -39,11 +39,11 @@ const plan = {
   },
   status: "draft"  // draft, approved, executing, completed
 };
-`
+```
 
 ### 第三步：实现计划生成
 
-`python
+```python
 class PlanGenerator:
     def __init__(self, llm_client):
         self.llm = llm_client
@@ -109,11 +109,11 @@ class PlanGenerator:
         
         response = self.llm.generate(prompt)
         return json.loads(response)
-`
+```
 
 ### 第四步：实现用户交互
 
-`python
+```python
 class PlanUI:
     def display_plan(self, plan):
         print(f"\n{'='*50}")
@@ -142,11 +142,11 @@ class PlanUI:
     def get_user_choice(self):
         choice = input("请选择 (1/2/3): ")
         return choice
-`
+```
 
 ### 第五步：实现执行引擎
 
-`python
+```python
 class PlanExecutor:
     def __init__(self):
         self.tools = {
@@ -201,11 +201,11 @@ class PlanExecutor:
             if dep not in completed_steps:
                 return False
         return True
-`
+```
 
 ## 完整示例
 
-`python
+```python
 # 完整的 Plan Mode 实现
 class SimplePlanModeAgent:
     def __init__(self, llm_client):
@@ -243,13 +243,13 @@ class SimplePlanModeAgent:
 if __name__ == "__main__":
     agent = SimplePlanModeAgent(your_llm_client)
     agent.run("为这个Python项目添加单元测试")
-`
+```
 
 ## 进阶功能
 
 ### 1. 动态计划调整
 
-`python
+```python
 def execute_with_adaptation(self, plan):
     for step in plan['steps']:
         result = self.execute_step(step)
@@ -260,11 +260,11 @@ def execute_with_adaptation(self, plan):
             return self.execute_with_adaptation(adjusted_plan)
     
     return plan
-`
+```
 
 ### 2. 并行执行
 
-`python
+```python
 import asyncio
 
 async def execute_parallel(self, plan):
@@ -279,11 +279,11 @@ async def execute_parallel(self, plan):
         # 处理结果
         for step, result in zip(group, results):
             self.process_result(step, result)
-`
+```
 
 ### 3. 错误恢复
 
-`python
+```python
 def handle_error(self, plan, step, error):
     # 分析错误类型
     error_type = self.classify_error(error)
@@ -296,11 +296,11 @@ def handle_error(self, plan, step, error):
     
     # 继续执行
     return self.execute_plan(recovery_plan)
-`
+```
 
 ## 测试用例
 
-`python
+```python
 # 测试 Plan Mode
 def test_plan_mode():
     # 测试用例1：简单任务
@@ -333,7 +333,7 @@ def test_plan_mode():
 
 if __name__ == "__main__":
     test_plan_mode()
-`
+```
 
 ## 学习建议
 

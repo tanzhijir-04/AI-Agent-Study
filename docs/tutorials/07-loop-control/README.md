@@ -67,7 +67,7 @@
 
 ## 🚀 快速开始
 
-`ash
+```bash
 # 运行综合演示
 node minimal_agent/demos/demo_loop_control.js
 

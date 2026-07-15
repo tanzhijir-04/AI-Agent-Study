@@ -19,7 +19,7 @@
 **位置：** minimal_agent/agent.js
 
 **你会看到：**
-`javascript
+`````javascript
 class MinimalCodingAgent {
     constructor(workingDirectory = '.') {
         this.workingDirectory = path.resolve(workingDirectory);
@@ -28,14 +28,14 @@ class MinimalCodingAgent {
     
     // 这里有 executeCommand(), readFile(), writeFile() 方法
 }
-`
+```
 
 **我的问题：** 你能找到这个文件并打开它吗？
 
 ### 第2步：添加 Plan Mode 类
 
 **我会给你这段代码：**
-`javascript
+`````javascript
 class PlanMode {
   constructor(agent) {
     this.agent = agent;
@@ -54,42 +54,42 @@ class PlanMode {
     // 执行计划的逻辑
   }
 }
-`
+```
 
 **你需要做的：** 把这段代码复制到 agent.js 文件的开头
 
 ### 第3步：修改主类
 
 **在 MinimalCodingAgent 类中添加：**
-`javascript
+`````javascript
 constructor(workingDirectory = '.') {
     this.workingDirectory = path.resolve(workingDirectory);
     this.history = [];
     this.planMode = new PlanMode(this);  // 新增这行
 }
-`
+```
 
 **添加新方法：**
-`javascript
+`````javascript
 async handleRequest(userRequest) {
     // 处理用户请求的逻辑
 }
-`
+```
 
 ### 第4步：测试
 
 **运行测试：**
-`ash
+```bash
 node agent.js
-`
+```
 
 **输入测试请求：**
-`
+```
 帮我读取 README.md 文件
-`
+```
 
 **预期结果：**
-`
+```
 收到请求：帮我读取 README.md 文件
 📋 执行计划：
 任务：帮我读取 README.md 文件
@@ -102,7 +102,7 @@ node agent.js
 [2] 修改计划
 [3] 取消
 请选择 (1/2/3): 
-`
+```
 
 ## 🔧 常见问题
 
@@ -123,7 +123,7 @@ node agent.js
 
 ### Q4：如何修改计划生成逻辑？
 **A4：** 在 nalyzeAndCreateSteps 方法中修改：
-`javascript
+```javascript
 analyzeAndCreateSteps(userRequest) {
   // 根据不同的请求类型生成不同的步骤
   if (userRequest.includes('读取')) {
@@ -131,7 +131,7 @@ analyzeAndCreateSteps(userRequest) {
   }
   // 添加更多类型...
 }
-`
+```
 
 ## 🎯 学习路径建议
 

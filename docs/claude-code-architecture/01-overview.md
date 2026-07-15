@@ -1,4 +1,6 @@
- # Claude Code 源码架构深度复盘 —— Agent 开发学习指南
+ # 01 — Claude Code 源码架构深度复盘
+
+> 本文是整个系列的核心，从源码层面拆解 Claude Code 的全部核心机制。
  
  > 基于 Claude Code 泄露源码（npm sourcemap）分析整理。
  > 摘要：本文从源码层面拆解 Claude Code 的全部核心机制，帮助 Agent 开发者和学习者理解"工业级 AI Agent"的设计方式与实现。
@@ -258,7 +260,7 @@
  
  ### 4.2 v2 多 Agent 探索
  
- `src/utils/planModeV2.ts`：
+```src/utils/planModeV2.ts`：
  
  ```typescript
  export function getPlanModeV2AgentCount(): number {

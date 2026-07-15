@@ -82,7 +82,7 @@ result = anthropic_llm.invoke("hello")  # 一样
 result = ollama_llm.invoke("hello")  # 一样
 ```
 
-`invoke()` 返回的是一个 `AIMessage` 对象，包含 `content`（文本内容）和 `tool_calls`（工具调用）。
+```invoke()` 返回的是一个 `AIMessage` 对象，包含 `content`（文本内容）和 `tool_calls`（工具调用）。
 
 ### 2.2 PromptTemplate（提示模板）
 
@@ -260,3 +260,5 @@ A: Python 版更成熟、资料更多、社区更大。如果你主要是用 Nod
 ---
 
 *文档更新时间：2026年7月14日*
+
+```

@@ -1,228 +1,448 @@
 ﻿<!DOCTYPE html>
+
 <html lang="zh-CN">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Agent Study</title>
+
+<title>Agent 入门懒人包</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
+
 :root{--bg:#f6f5f4;--surface:#fff;--text:#000;--text2:#615d59;--text3:#a39e98;--accent:#2537b1;--border:rgba(0,0,0,0.08);--code-bg:#1e1e2e;--font-ui:'Noto Sans SC','Inter',sans-serif;--font-content:'Noto Serif SC','Georgia',serif;--font-mono:'JetBrains Mono',monospace}
+
 [data-theme=dark]{--bg:#1a1a1a;--surface:#252525;--text:#e8e8e8;--text2:#9e9e9e;--text3:#666;--accent:#6b9aff;--border:rgba(255,255,255,0.08);--code-bg:#111118}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
 html{font-size:16px}
+
 body{font-family:var(--font-ui);background:var(--bg);color:var(--text);line-height:1.6;overflow:hidden;height:100vh}
+
 a{color:var(--accent);text-decoration:none}
+
 ::selection{background:rgba(37,55,177,0.15)}
+
 [data-theme=dark] ::selection{background:rgba(107,154,255,0.2)}
+
 ::-webkit-scrollbar{width:6px}
+
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
 #app{display:flex;height:100vh}
+
 #sidebar{width:280px;min-width:280px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;transition:transform .25s}
+
 #logo{padding:16px 20px 8px;border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;gap:8px}
+
 #logo svg{flex-shrink:0}
+
 .logo-t{font-size:14px;font-weight:600;line-height:1.3}
+
 .logo-s{font-size:11px;color:var(--text3)}
+
 #controls{display:flex;gap:6px;padding:8px 16px;border-bottom:1px solid var(--border);flex-shrink:0;align-items:center}
+
 #lang-select{flex:1;font-size:12px;padding:3px 6px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text2);cursor:pointer;font-family:var(--font-ui)}
+
 #theme-btn{width:28px;height:28px;border:none;border-radius:6px;background:var(--bg);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
 #theme-btn:hover{background:var(--border)}
+
 #theme-btn svg{width:14px;height:14px}
+
 #search-area{padding:8px 16px;flex-shrink:0;position:relative}
+
 #search-box{display:flex;align-items:center;background:var(--bg);border-radius:6px;padding:0 10px;height:32px;gap:6px;border:1px solid transparent}
+
 #search-box:focus-within{border-color:var(--accent);background:var(--surface)}
+
 #search-box input{border:none;background:none;outline:none;font-family:var(--font-ui);font-size:13px;color:var(--text);width:100%;height:100%}
+
 #search-box input::placeholder{color:var(--text3)}
+
 .search-icon{color:var(--text3);width:14px;height:14px;flex-shrink:0}
+
 #search-results{position:absolute;top:100%;left:16px;right:16px;background:var(--surface);border:1px solid var(--border);border-radius:6px;max-height:320px;overflow-y:auto;display:none;z-index:200}
+
 #search-results.show{display:block}
+
 .sr-item{padding:8px 12px;cursor:pointer;border-bottom:1px solid var(--border);font-size:13px}
+
 .sr-item:last-child{border-bottom:none}
+
 .sr-item:hover{background:var(--bg)}
+
 .sr-item .sr-path{font-size:11px;color:var(--text3);margin-top:2px}
+
 #nav{flex:1;overflow-y:auto;padding:4px 0 40px}
+
 .sec-title{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;padding:6px 16px;cursor:pointer;user-select:none}
+
 .sec-items{}
+
 .sec-items.hide{display:none}
+
 .nav-item{display:flex;align-items:center;padding:3px 16px 3px 24px;font-size:13px;color:var(--text2);cursor:pointer;position:relative}
+
 .nav-item:hover{color:var(--text);background:var(--bg)}
+
 .nav-item.active{color:var(--accent);font-weight:500;background:rgba(37,55,177,0.06)}
+
 [data-theme=dark] .nav-item.active{background:rgba(107,154,255,0.1)}
+
 .nav-item.active::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);border-radius:0 1px 1px 0}
+
 .nav-sub .nav-item{padding-left:40px;font-size:12.5px}
+
 .nav-folder{cursor:pointer;display:flex;align-items:center;gap:4px}
+
 #mobile-bar{display:none;height:50px;background:var(--surface);border-bottom:1px solid var(--border);align-items:center;padding:0 16px;gap:8px;flex-shrink:0;z-index:50}
+
 #hamburger{background:none;border:none;padding:5px;color:var(--text2);cursor:pointer;border-radius:6px}
+
 #hamburger:hover{background:var(--bg)}
+
 #mobile-title{font-size:15px;font-weight:600;flex:1}
+
 #overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:90}
+
 #overlay.show{display:block}
+
 #content{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--surface);min-width:0}
+
 #breadcrumb{padding:12px 40px 0;font-size:12px;color:var(--text3);display:flex;flex-wrap:wrap;gap:4px;flex-shrink:0}
+
 #breadcrumb span{color:var(--text2)}
+
 #breadcrumb .sep{color:var(--text3)}
+
 #scroll{flex:1;overflow-y:auto;padding:32px 40px 60px}
+
 #page{max-width:740px;margin:0 auto}
+
 #welcome{text-align:center;padding:40px 0}
+
 #welcome h1{font-size:28px;font-weight:700;letter-spacing:-.5px;margin-bottom:8px}
+
 #welcome p{color:var(--text2);font-size:15px;margin-bottom:24px;font-family:var(--font-content)}
+
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:560px;margin:0 auto}
+
 .card{border:1px solid var(--border);border-radius:8px;padding:16px;cursor:pointer;transition:border-color .15s;display:block;text-align:left}
+
 .card:hover{border-color:var(--accent)}
+
 .card .ci{font-size:20px;display:block;margin-bottom:4px}
+
 .card .ct{font-size:14px;font-weight:600;color:var(--text)}
+
 .card .cd{font-size:12px;color:var(--text2);margin-top:2px;font-family:var(--font-content)}
+
 .md{font-size:16px;line-height:1.75;font-family:var(--font-content);word-wrap:break-word}
+
 .md h1{font-size:28px;font-weight:700;margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border);font-family:var(--font-ui);letter-spacing:-.4px}
+
 .md h2{font-size:20px;font-weight:700;margin:32px 0 10px;font-family:var(--font-ui)}
+
 .md h3{font-size:17px;font-weight:600;margin:24px 0 8px;font-family:var(--font-ui)}
+
 .md p{margin-bottom:14px}
+
 .md a{color:var(--accent)}
+
 .md ul,.md ol{margin:0 0 14px;padding-left:1.5em}
+
 .md li{margin-bottom:4px}
+
 .md blockquote{margin:0 0 14px;padding:8px 16px;border-left:3px solid var(--accent);background:var(--bg);border-radius:0 6px 6px 0}
+
 .md pre{margin:0 0 14px;border-radius:8px;overflow:hidden;background:var(--code-bg);font-size:13px;line-height:1.6}
+
 .md pre code{font-family:var(--font-mono);font-size:13px;color:#cdd6f4;padding:16px 20px;display:block;overflow-x:auto}
+
 .md code{font-family:var(--font-mono);font-size:.85em;background:var(--bg);padding:2px 6px;border-radius:4px;color:#e06c75;word-break:break-word}
+
 :not(pre) > code{background:var(--bg);padding:2px 6px;border-radius:4px}
+
 .md table{width:100%;border-collapse:collapse;margin:0 0 14px;font-size:14px}
+
 .md th,.md td{padding:8px 12px;border:1px solid var(--border);text-align:left}
+
 .md th{background:var(--bg);font-weight:600}
+
 .md hr{border:none;border-top:1px solid var(--border);margin:32px 0}
+
 .md img{max-width:100%;border-radius:8px;margin:14px 0}
+
 .md details{margin:0 0 14px;padding:8px 16px;background:var(--bg);border-radius:8px;border:1px solid var(--border)}
+
 .md summary{font-weight:600;cursor:pointer}
+
 .loading{padding:60px 0;text-align:center;color:var(--text3)}
+
 .spinner{width:22px;height:22px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 8px}
+
 @keyframes spin{to{transform:rotate(360deg)}}
+
 .error{padding:60px 0;text-align:center}
+
 .error .msg{color:var(--text2);font-size:14px;margin-bottom:12px}
+
 .error .hint{display:inline-block;padding:8px 16px;background:#fef3d9;color:#b8731a;border-radius:8px;font-size:13px}
+
 [data-theme=dark] .error .hint{background:#3a2a1a;color:#fbbf24}
+
 #pnav{margin-top:48px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:16px}
+
 .pnl{display:flex;flex-direction:column;gap:2px;padding:10px 16px;border-radius:8px;border:1px solid var(--border);max-width:220px;font-size:13px;cursor:pointer;transition:border-color .15s}
+
 .pnl:hover{border-color:rgba(0,0,0,.16)}
+
 .pnl .dir{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;font-weight:500}
+
 .pnl .title{color:var(--text);font-weight:500}
+
 .pnl.right{text-align:right;align-items:flex-end}
+
 .pnl.left{text-align:left;align-items:flex-start}
+
 .pnl.disabled{opacity:.3;pointer-events:none}
+
 .cv-hdr{display:flex;align-items:center;padding:8px 16px;background:#181825;border-radius:8px 8px 0 0;font-size:12px;color:#a6adc8;border-bottom:1px solid rgba(255,255,255,.06)}
+
 .cv-hdr .lb{font-family:var(--font-mono);font-size:11px;background:rgba(255,255,255,.08);padding:1px 8px;border-radius:999px;margin-left:auto}
+
 .cv-body pre{margin:0;border-radius:0 0 8px 8px;background:var(--code-bg)}
+
 .cv-body pre code{font-family:var(--font-mono);font-size:13px;line-height:1.6;color:#cdd6f4;padding:16px 20px;display:block;overflow-x:auto}
+
 .hljs{background:transparent!important;color:#cdd6f4}
+
 .hljs-keyword{color:#cba6f7}.hljs-string{color:#a6e3a1}.hljs-number{color:#fab387}
+
 .hljs-comment{color:#6c7086;font-style:italic}.hljs-function{color:#89b4fa}
+
 .hljs-title{color:#89b4fa}.hljs-built_in{color:#f38ba8}
+
 .hljs-attr,.hljs-property{color:#89dceb}.hljs-type{color:#f9e2af}
+
 .hljs-literal{color:#fab387}.hljs-operator{color:#89dceb}
+
 .hljs-variable{color:#f2cdcd}.hljs-params{color:#f2cdcd}
+
 .hljs-tag,.hljs-name{color:#89b4fa}.hljs-attribute{color:#f9e2af}
+
 @media(max-width:919px){
+
   #sidebar{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%)}
+
   #sidebar.open{transform:translateX(0)}
+
   #mobile-bar{display:flex}
+
   #app{flex-direction:column}
+
   #content{height:calc(100vh - 50px)}
+
   #breadcrumb{padding:8px 16px 0}
+
   #scroll{padding:16px}
+
   #pnav{flex-direction:column}
+
   .pnl{max-width:100%}
+
   .grid{grid-template-columns:1fr}
+
 }
+
 @media(max-width:600px){
+
   .md h1{font-size:24px}
+
   #scroll{padding:12px}
+
 }
+
 </style>
+
 </head>
+
 <body>
+
 <div id="app">
+
   <div id="mobile-bar">
+
     <button id="hamburger" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
-    <span id="mobile-title">AI Agent Study</span>
+
+    <span id="mobile-title">Agent 入门懒人包</span>
+
   </div>
+
   <div id="overlay"></div>
+
   <aside id="sidebar">
+
     <div id="logo">
+
       <svg width="20" height="20" viewBox="0 0 256 256" fill="none"><rect x="32" y="32" width="192" height="192" rx="28" fill="var(--accent)"/><path d="M96 96h64M96 128h48M96 160h32" stroke="#fff" stroke-width="12" stroke-linecap="round"/></svg>
-      <div><div class="logo-t">AI Agent Study</div><div class="logo-s" id="logo-sub">从零学习 AI Agent 开发</div></div>
+
+      <div><div class="logo-t">Agent 入门懒人包</div><div class="logo-s" id="logo-sub">从零到一，轻松上手 AI Agent</div></div>
+
     </div>
+
     <div id="controls">
+
       <select id="lang-select">
+
         <option value="zh-CN">简体中文</option>
+
         <option value="zh-TW">繁體中文</option>
+
         <option value="en">English</option>
+
       </select>
+
       <button id="theme-btn" aria-label="Theme">
+
         <svg id="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+
         <svg id="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+
       </button>
+
     </div>
+
     <div id="search-area">
+
       <div id="search-box">
+
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+
         <input type="text" id="search-input" placeholder="搜索文档…" autocomplete="off">
+
       </div>
+
       <div id="search-results"></div>
+
     </div>
+
     <nav id="nav"></nav>
+
   </aside>
+
   <main id="content">
+
     <div id="breadcrumb"></div>
+
     <div id="scroll">
+
       <div id="page"></div>
+
     </div>
+
   </main>
+
 </div>
+
 <script>
-const I18N={zh:{s:'搜索文档…',se:'未找到',l:'加载中…',p:'← 上一篇',n:'下一篇 →',h:'首页',e:'加载失败',w1:'教程总览',w1d:'查看 12 章学习路径',w2:'文档索引',w2d:'关键词快速定位',w3:'代码实现',w3d:'完整源码浏览',w4:'贡献指南',w4d:'项目规范和参与方式',sb:'从零学习 AI Agent 开发'},zhTW:{s:'搜尋文檔…',se:'未找到',l:'載入中…',p:'← 上一篇',n:'下一篇 →',h:'首頁',e:'載入失敗',w1:'教程總覽',w1d:'查看 12 章學習路徑',w2:'文檔索引',w2d:'關鍵詞快速定位',w3:'代碼實現',w3d:'完整源碼瀏覽',w4:'貢獻指南',w4d:'項目規範和參與方式',sb:'從零學習 AI Agent 開發'},en:{s:'Search…',se:'Not found',l:'Loading…',p:'← Previous',n:'Next →',h:'Home',e:'Failed',w1:'Tutorials',w1d:'View 12 chapters',w2:'Index',w2d:'Quick search',w3:'Source Code',w3d:'Browse source',w4:'Contributing',w4d:'Project guidelines',sb:'Learn AI Agent Development'}};
+
+const I18N={zh:{s:'搜索文档…',se:'未找到',l:'加载中…',p:'← 上一篇',n:'下一篇 →',h:'首页',e:'加载失败',w1:'教程总览',w1d:'查看 12 章学习路径',w2:'文档索引',w2d:'关键词快速定位',w3:'代码实现',w3d:'完整源码浏览',w4:'贡献指南',w4d:'项目规范和参与方式',sb:'从零到一，轻松上手 AI Agent'},zhTW:{s:'搜尋文檔…',se:'未找到',l:'載入中…',p:'← 上一篇',n:'下一篇 →',h:'首頁',e:'載入失敗',w1:'教程總覽',w1d:'查看 12 章學習路徑',w2:'文檔索引',w2d:'關鍵詞快速定位',w3:'代碼實現',w3d:'完整源碼瀏覽',w4:'貢獻指南',w4d:'項目規範和參與方式',sb:'從零到一，輕鬆上手 AI Agent'},en:{s:'Search…',se:'Not found',l:'Loading…',p:'← Previous',n:'Next →',h:'Home',e:'Failed',w1:'Tutorials',w1d:'View 12 chapters',w2:'Index',w2d:'Quick search',w3:'Source Code',w3d:'Browse source',w4:'Contributing',w4d:'Project guidelines',sb:'From Zero to One, Master AI Agent'}};
+
 const NAV=[{t:'📖 教程',o:true,i:[
+
 {n:'教程总览',p:'docs/tutorials/README.md'},
+
 {n:'01 Plan Mode',p:'docs/tutorials/01-plan-mode/README.md',c:[{n:'概述',p:'docs/tutorials/01-plan-mode/README.md'},{n:'深度分析',p:'docs/tutorials/01-plan-mode/analysis.md'},{n:'完整指南',p:'docs/tutorials/01-plan-mode/complete.md'},{n:'FAQ',p:'docs/tutorials/01-plan-mode/faq.md'},{n:'实现指南',p:'docs/tutorials/01-plan-mode/implementation_guide.md'},{n:'实践练习',p:'docs/tutorials/01-plan-mode/practice.md'}]},
-{n:'02 Memory 系统',p:'docs/tutorials/02-memory-system/README.md'},
+
+{n:'02 Memory 系统',p:'docs/tutorials/02-memory-system/README.md',c:[{n:'概述',p:'docs/tutorials/02-memory-system/README.md'},{n:'完整实现指南',p:'docs/tutorials/02-memory-system/day2_memory_system.md'}]},
+
 {n:'03 Context Compression',p:'docs/tutorials/03-context-compression/README.md',c:[{n:'概述',p:'docs/tutorials/03-context-compression/README.md'},{n:'上下文压缩指南',p:'docs/tutorials/03-context-compression/context_compression.md'}]},
+
 {n:'04 Multi-agent',p:'docs/tutorials/04-multi-agent/README.md',c:[{n:'概述',p:'docs/tutorials/04-multi-agent/README.md'},{n:'管理指南',p:'docs/tutorials/04-multi-agent/multi_agent_management_guide.md'},{n:'完成报告',p:'docs/tutorials/04-multi-agent/COMPLETION_REPORT.md'},{n:'学习总结',p:'docs/tutorials/04-multi-agent/multi_agent_learning_summary.md'}]},
+
 {n:'05 Background Tasks',p:'docs/tutorials/05-background-tasks/README.md',s:'p'},
+
 {n:'06 Skills/Plugins',p:'docs/tutorials/06-plugins/README.md',c:[{n:'概述',p:'docs/tutorials/06-plugins/README.md'},{n:'Plugins & Skills 系统',p:'docs/tutorials/06-plugins/plugins_skills_system.md'}]},
+
 {n:'07 Loop/Workflow',p:'docs/tutorials/07-loop-control/README.md',c:[{n:'概述',p:'docs/tutorials/07-loop-control/README.md'},{n:'控制指南',p:'docs/tutorials/07-loop-control/loop_control_guide.md'}]},
-{n:'08 Sandbox',p:'docs/tutorials/08-sandbox/README.md',s:'l',c:[{n:'概述',p:'docs/tutorials/08-sandbox/README.md'},{n:'沙箱指南',p:'docs/tutorials/08-sandbox/sandbox_guide.md'}]},
-{n:'09 MCP',p:'docs/tutorials/09-mcp/README.md',s:'l'},
-{n:'10 TUI',p:'docs/tutorials/10-tui/README.md',s:'l'},
-{n:'11 Visualization',p:'docs/tutorials/11-visualization/README.md',s:'l'},
-{n:'12 LangChain/LangGraph',p:'docs/tutorials/12-langchain-langgraph/README.md',s:'l',c:[{n:'总览',p:'docs/tutorials/12-langchain-langgraph/README.md'},{n:'01 LangChain 入门',p:'docs/tutorials/12-langchain-langgraph/01-langchain-intro.md'},{n:'02 LangChain 核心组件',p:'docs/tutorials/12-langchain-langgraph/02-langchain-core.md'},{n:'03 LangGraph 入门',p:'docs/tutorials/12-langchain-langgraph/03-langgraph-intro.md'},{n:'04 LangGraph 核心',p:'docs/tutorials/12-langchain-langgraph/04-langgraph-core.md'},{n:'05 完整实践',p:'docs/tutorials/12-langchain-langgraph/05-practice.md'}]}]},
-{t:'📚 文档',i:[{n:'文档索引',p:'docs/INDEX.md'},{n:'架构深度解析',p:'docs/claude-code-architecture-deep-dive.md'},{n:'Git 设置指南',p:'docs/git/setup_guide.md'},{n:'贡献者指南',p:'AGENTS.md'}]},
-{t:'💻 代码实现',i:[{n:'代码总览',p:'minimal_agent/README.md'},{n:'Agent 分析文档',p:'minimal_agent/agent_analysis.md'},{n:'Agent v2 说明',p:'minimal_agent/AGENT_V2_README.md'},
-{n:'核心 Agents',f:true,c:[{n:'agent.js (v1)',p:'minimal_agent/agent.js'},{n:'agent_v2.js (v2)',p:'minimal_agent/agent_v2.js'},{n:'agent.py (Python)',p:'minimal_agent/agent.py'}]},
-{n:'功能模块',f:true,c:[{n:'Memory 系统',p:'minimal_agent/memory.js'},{n:'Plan Mode',p:'minimal_agent/plan_mode.js'},{n:'Plan Mode 增强版',p:'minimal_agent/plan_mode_enhanced.js'},{n:'Multi-agent 系统',p:'minimal_agent/multi_agent_system.js'},{n:'消息队列',p:'minimal_agent/message_queue.js'},{n:'任务调度器',p:'minimal_agent/task_scheduler.js'},{n:'Multi-agent 协作',p:'minimal_agent/multi_agent_collaboration.js'},{n:'Loop/Workflow 控制',p:'minimal_agent/loop_control.js'},{n:'DAG 工作流引擎',p:'minimal_agent/workflow_engine.js'},{n:'Skills 注册',p:'minimal_agent/skill_system.js'},{n:'Skills 发现',p:'minimal_agent/skill_discovery.js'},{n:'Plugin 加载',p:'minimal_agent/plugin_system.js'}]},
-{n:'演示脚本',f:true,c:[{n:'语言检测',p:'minimal_agent/demos/demo_language_detection.js'},{n:'上下文压缩',p:'minimal_agent/demos/demo_context_compression.js'},{n:'Multi-agent',p:'minimal_agent/demos/demo_multi_agent.js'},{n:'Skills/Plugins',p:'minimal_agent/demos/demo_skills_plugins.js'},{n:'Loop/Workflow',p:'minimal_agent/demos/demo_loop_control.js'},{n:'正则表达式',p:'minimal_agent/demos/demo_regex.js'}]},
-{n:'LangChain',f:true,c:[{n:'Basic Chain',p:'minimal_agent/langchain/basic_chain.py'},{n:'RAG Agent',p:'minimal_agent/langchain/rag_agent.py'},{n:'LangGraph Agent',p:'minimal_agent/langchain/langgraph_agent.py'}]},
-{n:'测试脚本',f:true,c:[{n:'test_agent_v2.js',p:'minimal_agent/tests/test_agent_v2.js'},{n:'test_memory.js',p:'minimal_agent/tests/test_memory.js'},{n:'test_plan_mode.js',p:'minimal_agent/tests/test_plan_mode.js'},{n:'test_multi_agent.js',p:'minimal_agent/tests/test_multi_agent.js'},{n:'test_loop_control.js',p:'minimal_agent/tests/test_loop_control.js'},{n:'test_workflow_engine.js',p:'minimal_agent/tests/test_workflow_engine.js'}]}]},
-{t:'🔌 Skills & Plugins',i:[{n:'Code Helper',p:'skills/example-skills/code-helper/SKILL.md'},{n:'Greeting',p:'skills/example-skills/greeting/SKILL.md'},{n:'Search',p:'skills/example-skills/search/SKILL.md'},{n:'Translation',p:'skills/example-skills/translation/SKILL.md'},{n:'Weather',p:'skills/example-skills/weather/SKILL.md'},{n:'Dev Tools',p:'plugins/dev-tools/plugin.json'},{n:'Network Tools',p:'plugins/network-tools/plugin.json'},{n:'Text Processing',p:'plugins/text-processing/plugin.json'}]}];
+
+{n:'08 Sandbox',p:'docs/tutorials/08-sandbox/README.md',c:[{n:'概述',p:'docs/tutorials/08-sandbox/README.md'},{n:'沙箱指南',p:'docs/tutorials/08-sandbox/sandbox_guide.md'}]},
+
+{n:'09 MCP',p:'docs/tutorials/09-mcp/README.md'},
+
+{n:'10 TUI',p:'docs/tutorials/10-tui/README.md'},
+
+{n:'11 Visualization',p:'docs/tutorials/11-visualization/README.md'},
+
+{n:'12 LangChain/LangGraph',p:'docs/tutorials/12-langchain-langgraph/README.md',c:[{n:'总览',p:'docs/tutorials/12-langchain-langgraph/README.md'},{n:'01 LangChain 入门',p:'docs/tutorials/12-langchain-langgraph/01-langchain-intro.md'},{n:'02 LangChain 核心组件',p:'docs/tutorials/12-langchain-langgraph/02-langchain-core.md'},{n:'03 LangGraph 入门',p:'docs/tutorials/12-langchain-langgraph/03-langgraph-intro.md'},{n:'04 LangGraph 核心',p:'docs/tutorials/12-langchain-langgraph/04-langgraph-core.md'},{n:'05 完整实践',p:'docs/tutorials/12-langchain-langgraph/05-practice.md'}]}]},
+
+
+
+
+
+,
+{t:"💬 低代码平台",o:true,i:[{n:"总览",p:"docs/tutorials/13-lowcode-agent/README.md"},{n:"01 什么是低代码平台",p:"docs/tutorials/13-lowcode-agent/01-what-is-lowcode.md"},{n:"02 Coze 入门",p:"docs/tutorials/13-lowcode-agent/02-coze-bot.md"},{n:"03 Coze 进阶",p:"docs/tutorials/13-lowcode-agent/03-coze-advanced.md"},{n:"04 Dify 入门",p:"docs/tutorials/13-lowcode-agent/04-dify-intro.md"},{n:"05 Dify 进阶",p:"docs/tutorials/13-lowcode-agent/05-dify-advanced.md"},{n:"06 对比与选型",p:"docs/tutorials/13-lowcode-agent/06-coze-vs-dify.md"},{n:"07 实战项目",p:"docs/tutorials/13-lowcode-agent/07-practice.md"}]},
+{t:"🧠 Claude Code 架构",o:true,i:[{n:"系列总览",p:"docs/claude-code-architecture/README.md"},{n:"01 源码架构深度复盘",p:"docs/claude-code-architecture/01-overview.md"},{n:"02 Tool 系统",p:"docs/claude-code-architecture/02-tool-system.md"},{n:"03 QueryEngine",p:"docs/claude-code-architecture/03-query-engine.md"},{n:"04 Plan Mode",p:"docs/claude-code-architecture/04-plan-mode.md"},{n:"05 Memory 系统",p:"docs/claude-code-architecture/05-memory.md"},{n:"06 上下文压缩",p:"docs/claude-code-architecture/06-context-compression.md"},{n:"07 Multi-Agent",p:"docs/claude-code-architecture/07-multi-agent.md"},{n:"08 Skills/Plugins",p:"docs/claude-code-architecture/08-skills-plugins.md"},{n:"09 MCP 集成",p:"docs/claude-code-architecture/09-mcp.md"},{n:"10 后台任务",p:"docs/claude-code-architecture/10-background-tasks.md"},{n:"11 Sandbox",p:"docs/claude-code-architecture/11-sandbox.md"},{n:"12 TUI 引擎",p:"docs/claude-code-architecture/12-tui.md"},{n:"13 可观测性",p:"docs/claude-code-architecture/13-observability.md"},{n:"14 设计哲学",p:"docs/claude-code-architecture/14-philosophy.md"}]}];
+
 let lang='zh',theme='light',curPath=null,cache={},sIdx=null;
+
 function t(k){const m={zh:'zh','zh-CN':'zh','zh-TW':'zhTW',en:'en'}[lang]||'zh';return I18N[m]?.[k]||I18N['zh'][k]||k}
+
 function setTheme(t){theme=t;document.documentElement.dataset.theme=t;document.getElementById('sun').style.display=t==='dark'?'none':'block';document.getElementById('moon').style.display=t==='dark'?'block':'none';try{localStorage.setItem('th',t)}catch(e){}}
+
 function toggleTheme(){setTheme(theme==='dark'?'light':'dark')}
+
 function buildNav(){const n=document.getElementById('nav');n.innerHTML='';NAV.forEach(sec=>{const h=document.createElement('div');h.className='sec-title';h.innerHTML='<span>'+sec.t+'</span>';const b=document.createElement('div');b.className='sec-items'+(sec.o?'':' hide');h.onclick=()=>b.classList.toggle('hide');renderItems(sec.i,b);n.appendChild(h);n.appendChild(b)});updNav(curPath)}
+
 function renderItems(items,con){items.forEach(it=>{if(it.f||(it.c&&!it.p)){const f=document.createElement('div');f.className='nav-item nav-folder';f.innerHTML='<svg width="8" height="8" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4l4 4-4 4"/></svg><span>'+it.n+'</span>';const ch=document.createElement('div');ch.className='nav-sub';ch.style.display='none';f.onclick=()=>{const sh=ch.style.display;ch.style.display=sh==='none'?'block':'none';f.querySelector('svg').style.transform=sh==='none'?'rotate(90deg)':''};con.appendChild(f);con.appendChild(ch);renderItems(it.c||[],ch)}else if(it.c){const el=mkItem(it,true);con.appendChild(el);const ch=document.createElement('div');ch.className='nav-sub';renderItems(it.c,ch);con.appendChild(ch)}else con.appendChild(mkItem(it,false))})}
+
 function mkItem(it,isF){const el=document.createElement('a');el.className='nav-item';el.href='#';el.dataset.path=it.p;el.innerHTML=(isF?'<span style="margin-right:4px">📂</span> ':'')+'<span>'+it.n+'</span>'+(it.s?' <span style="font-size:10px;margin-left:auto">'+(it.s==='p'?'📅':'🔄')+'</span>':'');el.onclick=(e)=>{e.preventDefault();loadPage(it.p)};return el}
+
 function updNav(path){document.querySelectorAll('.nav-item').forEach(el=>el.classList.toggle('active',el.dataset.path===path))}
+
 function setLang(l){lang=l||'zh';const m={zh:'zh','zh-CN':'zh','zh-TW':'zhTW',en:'en'}[lang]||'zh';const i=I18N[m];document.getElementById('logo-sub').textContent=i.sb;document.getElementById('search-input').placeholder=i.s;buildNav();if(curPath)loadPage(curPath);else showWelcome();try{localStorage.setItem('lang',l)}catch(e){}}
+
 function flatPages(){const r=[];function w(items){items.forEach(it=>{if(it.c){if(it.p)r.push({n:it.n,p:it.p});w(it.c)}else if(it.p)r.push({n:it.n,p:it.p})})}NAV.forEach(s=>w(s.i));return r}
+
 const ALL=flatPages();
-async function loadPage(path){if(!path||path===curPath)return;history.pushState(null,'','#'+path);curPath=path;updNav(path);updBreadcrumb(path);const c=document.getElementById('page');if(location.protocol==='file:'){c.innerHTML='<div class="error"><div class="msg">⚠️ file:// 协议下无法加载内容</div><div class="hint">请运行 serve.ps1 启动本地服务器，或访问 GitHub Pages</div></div>';return}c.innerHTML='<div class="loading"><div class="spinner"></div><span>'+t('l')+'</span></div>';try{if(!cache[path]){const r=await fetch(path);if(!r.ok)throw new Error('HTTP '+r.status);cache[path]=await r.text()}const txt=cache[path],ext=path.split('.').pop().toLowerCase();if(ext==='md'){c.innerHTML='<div class="md">'+marked.parse(txt,{breaks:true,gfm:true})+'</div>';c.querySelectorAll('pre code').forEach(b=>{if(!b.className.includes('language-mermaid'))hljs.highlightElement(b)})}else{const lm={js:'javascript',py:'python',json:'json',ps1:'powershell'},lg=lm[ext]||ext,fn=path.split('/').pop();c.innerHTML='<div class="code-viewer"><div class="cv-hdr"><span>'+fn+'</span><span class="lb">'+ext.toUpperCase()+'</span></div><div class="cv-body"><pre><code class="language-'+lg+'">'+esc(txt)+'</code></pre></div></div>';const ce=c.querySelector('code');if(ce)hljs.highlightElement(ce)}updPnav(path);document.getElementById('scroll').scrollTop=0}catch(e){c.innerHTML='<div class="error"><div class="msg">⚠️ '+t('e')+'：'+esc(e.message)+'</div><div style="font-size:13px;color:var(--text3)">'+esc(path)+'</div></div>'}closeM()}
+
+async function loadPage(path){if(!path||path===curPath)return;history.pushState(null,'','#'+path);curPath=path;updNav(path);updBreadcrumb(path);const c=document.getElementById('page');if(location.protocol==='file:'){c.innerHTML='<div class="error"><div class="msg">⚠️ file:// 协议下无法加载内容</div><div class="hint">请运行 serve.ps1 启动本地服务器，或访问 GitHub Pages</div></div>';return}c.innerHTML='<div class="loading"><div class="spinner"></div><span>'+t('l')+'</span></div>';try{if(!cache[path]){const r=await fetch(path);if(!r.ok)throw new Error('HTTP '+r.status);cache[path]=await r.text()}const txt=cache[path],ext=path.split('.').pop().toLowerCase();if(ext==='md'){c.innerHTML='<div class="md">'+marked.parse(txt,{breaks:true,gfm:true})+'</div>';c.querySelectorAll('pre code').forEach(b=>{hljs.highlightElement(b);renderMermaid()})}else{const lm={js:'javascript',py:'python',json:'json',ps1:'powershell'},lg=lm[ext]||ext,fn=path.split('/').pop();c.innerHTML='<div class="code-viewer"><div class="cv-hdr"><span>'+fn+'</span><span class="lb">'+ext.toUpperCase()+'</span></div><div class="cv-body"><pre><code class="language-'+lg+'">'+esc(txt)+'</code></pre></div></div>';const ce=c.querySelector('code');if(ce)hljs.highlightElement(ce)}updPnav(path);document.getElementById('scroll').scrollTop=0}catch(e){c.innerHTML='<div class="error"><div class="msg">⚠️ '+t('e')+'：'+esc(e.message)+'</div><div style="font-size:13px;color:var(--text3)">'+esc(path)+'</div></div>'}closeM()}
+
 function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
 function updBreadcrumb(path){const el=document.getElementById('breadcrumb');const parts=path.split('/'),fn=parts.pop().replace(/\.(md|js|py|json|ps1)$/i,'');let h='<a href="#" onclick="event.preventDefault();showWelcome()">'+t('h')+'</a><span class="sep"> / </span>';parts.forEach(p=>{h+='<span>'+esc(p)+'</span><span class="sep"> / </span>'});h+='<span>'+esc(fn)+'</span>';el.innerHTML=h}
-function updPnav(path){const idx=ALL.findIndex(p=>p.path===path);if(idx===-1)return;const prv=idx>0?ALL[idx-1]:null,nxt=idx<ALL.length-1?ALL[idx+1]:null;const ex=document.getElementById('pnav');if(ex)ex.remove();if(!prv&&!nxt)return;const c=document.getElementById('page');c.insertAdjacentHTML('beforeend','<div id="pnav"><a class="pnl left'+(prv?'':' disabled')+'" href="#"'+(prv?' onclick="event.preventDefault();loadPage(\''+prv.path+'\')"':'')+'><span class="dir">'+t('p')+'</span><span class="title">'+(prv?esc(prv.n||''):'')+'</span></a><a class="pnl right'+(nxt?'':' disabled')+'" href="#"'+(nxt?' onclick="event.preventDefault();loadPage(\''+nxt.path+'\')"':'')+'><span class="dir">'+t('n')+'</span><span class="title">'+(nxt?esc(nxt.n||''):'')+'</span></a></div>')}
-async function doSearch(q){const rl=document.getElementById('search-results');if(!q||q.length<1){rl.classList.remove('show');return}if(!sIdx){sIdx={};ALL.forEach(p=>sIdx[p.path]={n:p.n,text:''})}await Promise.all(ALL.filter(p=>!sIdx[p.path].text).map(async(p)=>{try{const r=await fetch(p.path);if(r.ok){sIdx[p.path].text=await r.text()}}catch(e){}}));const ql=q.toLowerCase(),res=[];ALL.forEach(p=>{const e=sIdx[p.path];if(!e)return;const idx=e.text.toLowerCase().indexOf(ql);if(idx>-1){let sn=e.text.substring(Math.max(0,idx-30),idx+60);sn=sn.replace(/[#*`\[\]()>|_-]/g,' ').replace(/\s+/g,' ').trim();if(sn.length>80)sn=sn.substring(0,80)+'…';res.push({n:e.n,path:p.path,sn:sn})}});const top=res.slice(0,12);if(top.length)rl.innerHTML=top.map(r=>'<div class="sr-item" onclick="event.stopPropagation();loadPage(\''+r.path+'\')"><b>'+esc(r.n)+'</b><div class="sr-path">'+esc(r.sn)+'</div></div>').join('');else rl.innerHTML='<div class="sr-item" style="color:var(--text3)">'+t('se')+'</div>';rl.classList.add('show')}
+
+function updPnav(path){const idx=ALL.findIndex(p=>p.p===path);if(idx===-1)return;const prv=idx>0?ALL[idx-1]:null,nxt=idx<ALL.length-1?ALL[idx+1]:null;const ex=document.getElementById('pnav');if(ex)ex.remove();if(!prv&&!nxt)return;const c=document.getElementById('page');c.insertAdjacentHTML('beforeend','<div id="pnav"><a class="pnl left'+(prv?'':' disabled')+'" href="#"'+(prv?' onclick="event.preventDefault();loadPage(\''+prv.path+'\')"':'')+'><span class="dir">'+t('p')+'</span><span class="title">'+(prv?esc(prv.n||''):'')+'</span></a><a class="pnl right'+(nxt?'':' disabled')+'" href="#"'+(nxt?' onclick="event.preventDefault();loadPage(\''+nxt.path+'\')"':'')+'><span class="dir">'+t('n')+'</span><span class="title">'+(nxt?esc(nxt.n||''):'')+'</span></a></div>')}
+
+async function doSearch(q){const rl=document.getElementById('search-results');if(!q||q.length<1){rl.classList.remove('show');return}if(!sIdx){sIdx={};ALL.forEach(p=>sIdx[p.p]={n:p.n,text:''})}await Promise.all(ALL.filter(p=>!sIdx[p.p].text).map(async(p)=>{try{const r=await fetch(p.p);if(r.ok){sIdx[p.p].text=await r.text()}}catch(e){}}));const ql=q.toLowerCase(),res=[];ALL.forEach(p=>{const e=sIdx[p.p];if(!e)return;const idx=e.text.toLowerCase().indexOf(ql);if(idx>-1){let sn=e.text.substring(Math.max(0,idx-30),idx+60);sn=sn.replace(/[#*`\[\]()>|_-]/g,' ').replace(/\s+/g,' ').trim();if(sn.length>80)sn=sn.substring(0,80)+'…';res.push({n:e.n,path:p.p,sn:sn})}});const top=res.slice(0,12);if(top.length)rl.innerHTML=top.map(r=>'<div class="sr-item" onclick="event.stopPropagation();loadPage(\''+r.path+'\')"><b>'+esc(r.n)+'</b><div class="sr-path">'+esc(r.sn)+'</div></div>').join('');else rl.innerHTML='<div class="sr-item" style="color:var(--text3)">'+t('se')+'</div>';rl.classList.add('show')}
+
 function showWelcome(){curPath=null;document.getElementById('breadcrumb').innerHTML='';document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));const c=document.getElementById('page');c.innerHTML='<div id="welcome"><h1>'+'🤖'+' AI Agent Study</h1><p>'+t('sb')+'</p><div class="grid"><a class="card" href="#" onclick="event.preventDefault();loadPage(\'docs/tutorials/README.md\')"><span class="ci">📖</span><span class="ct">'+t('w1')+'</span><span class="cd">'+t('w1d')+'</span></a><a class="card" href="#" onclick="event.preventDefault();loadPage(\'docs/INDEX.md\')"><span class="ci">📑</span><span class="ct">'+t('w2')+'</span><span class="cd">'+t('w2d')+'</span></a><a class="card" href="#" onclick="event.preventDefault();loadPage(\'minimal_agent/README.md\')"><span class="ci">💻</span><span class="ct">'+t('w3')+'</span><span class="cd">'+t('w3d')+'</span></a><a class="card" href="#" onclick="event.preventDefault();loadPage(\'AGENTS.md\')"><span class="ci">📝</span><span class="ct">'+t('w4')+'</span><span class="cd">'+t('w4d')+'</span></a></div></div>';history.pushState(null,'','#');document.getElementById('scroll').scrollTop=0;closeM()}
+
 function escapeHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
 function openM(){document.getElementById('sidebar').classList.add('open');document.getElementById('overlay').classList.add('show')}
+
 function closeM(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
-function init(){try{var sl=localStorage.getItem('lang')||'zh-CN';var st=localStorage.getItem('th')||'light'}catch(e){var sl='zh-CN';var st='light'}setLang(sl);setTheme(st);const h=location.hash.replace(/^#/,'');if(h)loadPage(decodeURIComponent(h));else showWelcome();const si=document.getElementById('search-input');let ti;si.addEventListener('input',()=>{clearTimeout(ti);ti=setTimeout(()=>doSearch(si.value),200)});si.addEventListener('keydown',(e)=>{if(e.key==='Escape'){si.blur();document.getElementById('search-results').classList.remove('show')}});document.addEventListener('click',(e)=>{if(!e.target.closest('#search-area'))document.getElementById('search-results').classList.remove('show')});document.addEventListener('keydown',(e)=>{if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();si.focus()}});document.getElementById('hamburger').addEventListener('click',openM);document.getElementById('overlay').addEventListener('click',closeM);document.getElementById('theme-btn').addEventListener('click',toggleTheme);document.getElementById('lang-select').addEventListener('change',(e)=>setLang(e.target.value));window.addEventListener('popstate',()=>{const h=location.hash.replace(/^#/,'');if(h)loadPage(decodeURIComponent(h));else showWelcome()})}
-(function(){const deps=[{src:'https://cdn.jsdelivr.net/npm/marked/marked.min.js',ck:'marked'},{src:'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js',ck:'hljs'}];let ld=0,st=false;function cb(){ld++;if(ld>=deps.length&&!st){st=true;init()}}deps.forEach(d=>{if(window[d.ck]){cb();return}const s=document.createElement('script');s.src=d.src;s.onload=cb;s.onerror=()=>{console.warn(d.src);cb()};document.head.appendChild(s)});setTimeout(()=>{if(!st){st=true;init()}},6000)})();
+
+function renderMermaid(){try{if(typeof mermaid==='undefined'||!mermaid)return;const n=document.querySelectorAll('.language-mermaid');if(!n.length)return;mermaid.initialize({startOnLoad:false,theme:theme==='dark'?'dark':'default'});mermaid.run({nodes:n}).catch(function(e){console.warn('Mermaid:',e)})}catch(e){}}function init(){try{var sl=localStorage.getItem('lang')||'zh-CN';var st=localStorage.getItem('th')||'light'}catch(e){var sl='zh-CN';var st='light'}setLang(sl);setTheme(st);const h=location.hash.replace(/^#/,'');if(h)loadPage(decodeURIComponent(h));else showWelcome();const si=document.getElementById('search-input');let ti;si.addEventListener('input',()=>{clearTimeout(ti);ti=setTimeout(()=>doSearch(si.value),200)});si.addEventListener('keydown',(e)=>{if(e.key==='Escape'){si.blur();document.getElementById('search-results').classList.remove('show')}});document.addEventListener('click',(e)=>{if(!e.target.closest('#search-area'))document.getElementById('search-results').classList.remove('show')});document.addEventListener('keydown',(e)=>{if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();si.focus()}});document.getElementById('hamburger').addEventListener('click',openM);document.getElementById('overlay').addEventListener('click',closeM);document.getElementById('theme-btn').addEventListener('click',toggleTheme);document.getElementById('lang-select').addEventListener('change',(e)=>setLang(e.target.value));window.addEventListener('popstate',()=>{const h=location.hash.replace(/^#/,'');if(h)loadPage(decodeURIComponent(h));else showWelcome()})}
+
+(function(){const deps=[{src:'https://cdn.jsdelivr.net/npm/marked/marked.min.js',ck:'marked'},{src:'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js',ck:'hljs'},{src:'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js',ck:'mermaid'}];let ld=0,st=false;function cb(){ld++;if(ld>=deps.length&&!st){st=true;init()}}deps.forEach(d=>{if(window[d.ck]){cb();return}const s=document.createElement('script');s.src=d.src;s.onload=cb;s.onerror=()=>{console.warn(d.src);cb()};document.head.appendChild(s)});setTimeout(()=>{if(!st){st=true;init()}},6000)})();
+
 </script>
+
 </body>
+
 </html>
+
