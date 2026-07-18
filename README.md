@@ -1,6 +1,6 @@
-# 🤖 AI Agent Study
-> 从零开始学习 AI Agent 开发的完整学习资源库。
-> 覆盖 6 阶段 24 章，配有可运行的 JavaScript/Python 代码实现、测试、55+ 张配图和教程文档。
+# 🤖 agentbase
+> AI Agent 知识基地 —— 从零到一构建 Agent 的完整学习体系。
+> 覆盖 6 阶段 24 章，配有可运行的 JS/Python 代码实现、单元测试、56 张技术配图和搜索引擎可检索的教程文档。
 
 ---
 
@@ -45,8 +45,7 @@ agentbase/
 ├── AGENTS.md                           # 贡献者指南
 ├── index.html                          # 📚 在线知识库网页（浏览器打开）
 ├── serve.ps1                           # 本地开发服务器启动脚本
-├── asset/icon.svg                      # 项目 Logo
-├── assets/                             # 55+ 张技术配图（Python 脚本生成）
+├── assets/                             # 项目 Logo + 55+ 张技术配图
 ├── docs/
 │   ├── INDEX.md                        # 文档索引（关键词可搜）
 │   ├── claude-code-architecture/       # Claude Code 架构深度分析（14 篇）
@@ -98,7 +97,7 @@ agentbase/
 │   ├── demos/                          # 可运行演示
 │   ├── tests/                          # 测试（全部通过 ✅）
 │   └── run_tests.ps1                   # 一键运行测试
-└── assets/                             # 配图 Python 生成脚本
+└── assets/                             # 项目 Logo + 配图生成脚本
 ```
 
 ## 📊 学习进度
