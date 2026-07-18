@@ -1,6 +1,6 @@
 # 🤖 agentbase
 
-![Agentbase Icon](assets/icon.svg)
+<img src="assets/icon.svg" alt="Agentbase Icon" width="96">
 
 > AI Agent 知识基地 —— 从零到一构建 Agent 的完整学习体系。
 > 覆盖 6 阶段 24 章，配有可运行的 JS/Python 代码实现、单元测试、56 张技术配图和搜索引擎可检索的教程文档。
