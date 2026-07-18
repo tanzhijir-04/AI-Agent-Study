@@ -1,130 +1,157 @@
-<div align="center">
-  <img src="asset/icon.svg" alt="AI-Agent-Study Logo" width="100" height="100">
-  <h1>AI Agent 学习懒人包</h1>
-  24 个主题 · 6 个阶段 · 可运行代码 · 中文文档 · <a href="https://tanzhijir-04.github.io/AI-Agent-Study/">在线知识库</a>
-</div>
+ # 🤖 AI Agent Study
+ > 从零开始学习 AI Agent 开发的完整学习资源库。
+ > 覆盖 12 个主题，配有可运行的 JavaScript/Python 代码实现、测试和教程文档。
+ 
+ ---
+ 
+ ## 🚀 极速开始
+ 
+ ```bash
+ # 运行基础 Agent
+ node minimal_agent/agent.js
+ 
+ # 运行全部测试
+ .\minimal_agent\run_tests.ps1
+ 
+ # LangChain 示例（Python）
+ cd minimal_agent
+ python langchain/basic_chain.py
+ ```
+ 
+ ---
+ 
+ ## 📖 学习导航
+ 
+ | 你想做什么 | 去看 |
+ |-----------|------|
+ | 搞清楚先学什么、后学什么 | [教程总览](docs/tutorials/README.md) —— 有依赖关系图 |
+ | 快速搜索某个关键词或文件 | [文档索引](docs/INDEX.md) |
+ | 直接看代码实现 | [minimal_agent/](minimal_agent/README.md) |
+ | 了解如何贡献 | [AGENTS.md](AGENTS.md) |
+ 
+ ---
+ 
+ ## 📁 项目结构
+ 
+ ```
+ AI-Agent-Study/
+ ├── README.md                           # 项目主页（本文件）
+ ├── AGENTS.md                           # 贡献者指南
+ ├── docs/                               # 文档目录
+ │   ├── INDEX.md                        # 文档索引（关键词可搜）
+ │   ├── claude-code-architecture-deep-dive.md   # 架构深度解析
+ │   ├── tutorials/                      # 12 章教程
+ │   │   ├── README.md                   # 总览 + 依赖图 ⭐
+ │   │   ├── 01-plan-mode/               # ✅ Plan Mode（6 篇文档）
+ │   │   ├── 02-memory-system/           # ✅ Memory 系统
+ │   │   ├── 03-context-compression/     # ✅ 上下文压缩
+ │   │   ├── 04-multi-agent/             # ✅ Multi-agent
+ │   │   ├── 05-background-tasks/        # 📅 待学习
+ │   │   ├── 06-plugins/                 # ✅ Skills/Plugins
+ │   │   ├── 07-loop-control/            # ✅ Loop/Workflow
+ │   │   ├── 08-sandbox/                 # 🔄 编写中（已有基础指南）
+ │   │   ├── 09-mcp/                     # 🔄 学习中
+ │   │   ├── 10-tui/                     # 🔄 学习中
+ │   │   ├── 11-visualization/           # 🔄 学习中
+ │   │   └── 12-langchain-langgraph/     # ✅ LangChain/LangGraph（6 篇文档）
+ │   └── git/                            # Git 配置和指南
+ ├── minimal_agent/                      # Agent 代码实现
+ │   ├── agent.js / agent.py             # v1.0（JS + Python）
+ │   ├── agent_v2.js                     # v2.0（含 Memory）
+ │   ├── memory.js / memory.json         # Memory 系统
+ │   ├── plan_mode.js / plan_mode_enhanced.js   # Plan Mode
+ │   ├── multi_agent_system.js           # Multi-agent 系统
+ │   ├── message_queue.js                # 消息队列
+ │   ├── task_scheduler.js               # 任务调度器
+ │   ├── multi_agent_collaboration.js    # 协作示例
+ │   ├── loop_control.js                 # 循环控制
+ │   ├── workflow_engine.js              # DAG 工作流引擎
+ │   ├── skill_system.js / skill_discovery.js   # 技能系统
+ │   ├── plugin_system.js                # 插件系统
+ │   ├── langchain/                      # ✅ LangChain/LangGraph 代码
+ │   │   ├── basic_chain.py              # 最简单的 Chain
+ │   │   ├── rag_agent.py                # RAG + Memory Agent
+ │   │   └── langgraph_agent.py          # LangGraph + Human-in-loop
+ │   ├── demos/                          # 可运行演示（6 个，含 Skills/Plugins）
+ │   ├── tests/                          # 测试（全部通过 ✅）
+ │   ├── run_tests.ps1                   # 一键运行测试
+ │   └── run_multi_agent_demo.ps1        # 一键运行多 Agent 演示
+ ├── skills/                             # 技能配置示例
+ └── plugins/                            # 插件配置示例
+ ```
+ 
+ ## 📊 学习进度
+ 
+ | # | 章节 | 状态 | 核心代码 | 测试覆盖 |
+ |---|------|------|---------|---------|
+ | 01 | Plan Mode | ✅ 完成 | plan_mode.js / plan_mode_enhanced.js | ✅ |
+ | 02 | Memory 系统 | ✅ 完成 | memory.js, agent_v2.js | ✅ |
+ | 03 | Context Compression | ✅ 完成 | demos/demo_context_compression.js | — |
+ | 04 | Multi-agent | ✅ 完成 | multi_agent_system.js, message_queue.js, task_scheduler.js | ✅ |
+ | 05 | Background Tasks | 📅 待学习 | — | — |
+ | 06 | Skills/Plugins | ✅ 完成 | skill_system.js, skill_discovery.js, plugin_system.js | ✅ |
+ | 07 | Loop/Workflow | ✅ 完成 | loop_control.js, workflow_engine.js | ✅ |
+ | 08 | Sandbox | 🔄 编写中 | docs/tutorials/08-sandbox/sandbox_guide.md | — |
+ | 09 | MCP | 🔄 学习中 | — | — |
+ | 10 | TUI | 🔄 学习中 | — | — |
+ | 11 | Visualization | 🔄 学习中 | — | — |
+ | 12 | LangChain/LangGraph | ✅ 完成 | langchain/basic_chain.py, rag_agent.py, langgraph_agent.py | — |
+ 
+ **图例：** ✅ 完成（文档 + 代码 + 测试就绪） · 🔄 学习中 · 📅 待学习
+ 
+ ---
+ 
+ ## 🎯 推荐阅读路线
+ 
+ | 兴趣方向 | 推荐顺序 |
+ |---------|---------|
+ | 🐣 Agent 入门 | 01 Plan Mode → 02 Memory → 07 Loop/Workflow |
+ | 🏗️ 架构进阶 | 03 Context → 04 Multi-agent → 08 Sandbox |
+ | 🔌 扩展开发 | 06 Skills/Plugins → 09 MCP |
+ | 🧠 LLM 框架 | ✅ 12 LangChain/LangGraph |
+ | 🖥️ 界面相关 | 10 TUI → 11 Visualization |
+ 
+ 不确定的可以先看 [教程总览](docs/tutorials/README.md) 的依赖关系图。
+ 
+ ## 🛠️ 常用命令
+ 
+ ```bash
+ # 文档
+ cat docs/tutorials/README.md
+ 
+ # 运行代码
+ node minimal_agent/agent.js
+ node minimal_agent/demos/demo_loop_control.js
+ node minimal_agent/demos/demo_skills_plugins.js
+ node minimal_agent/demos/demo_multi_agent.js
+ 
+ # 测试
+ .\minimal_agent\run_tests.ps1
+ # 或单文件
+ node minimal_agent/tests/test_agent_v2.js
+ 
+ # Python LangChain
+ cd minimal_agent
+ python langchain/basic_chain.py
+ python langchain/rag_agent.py
+ python langchain/langgraph_agent.py
+ ```
+ 
+ ## 📚 推荐资源
+ 
+ - [Claude Code 文档](https://docs.anthropic.com/claude-code)
+ - [OpenAI Codex 文档](https://platform.openai.com/docs/codex)
+ - [MCP 协议](https://modelcontextprotocol.io)
+ - [LangChain 文档](https://python.langchain.com/)
+ - [LangGraph 文档](https://langchain-ai.github.io/langgraph/)
+ 
+ ## 🤝 贡献
+ 
+ 欢迎提交 Issue 和 PR！详见 [AGENTS.md](AGENTS.md)。
+ 
+ ---
+ 
+ *更新时间：2026年7月14日*
 
-<div align="center">
-<a href="https://tanzhijir-04.github.io/AI-Agent-Study/"><img src="https://img.shields.io/badge/在线知识库-访问-blue?style=flat-square"></a>
-<a href="https://space.bilibili.com/15586839"><img src="https://img.shields.io/badge/B 站-作者主页-fb7299?style=flat-square"></a>
-</div>
 
-## 这个仓库是做什么的
 
-一个面向 **普通开发者转型 Agent 开发工程师 / 大模型应用工程师** 的完整学习路径。
-
-从最基础的 LLM 调用和 ReAct 循环开始，一路深入到 Harness 框架、Multi-agent 协作、RAG 检索、MCP 协议、生产部署，最后以面试冲刺收尾。每个主题都有中文文档、直接能跑的 JS/Python 代码、配套测试，以及**面试高频考点**标注。
-
-代码不需要 GPU 或 API Key，装个 Node.js 就能跑。
-
-**谁会用得上：**
-
-| 如果你…… | 可以从这里下手 |
-|---|---|
-| 刚接触 Agent，想理解 AI Agent 是什么 | 看[教程总览](docs/tutorials/README.md)，从第一阶段开始 |
-| 写代码但没碰过 LLM 相关的开发 | minimal_agent/ 下面的代码都是 Node.js 直接跑的 |
-| 主要用 Python | 翻 [LangChain/LangGraph 专题](docs/tutorials/17-langchain-langgraph/) 和 [Python 示例](minimal_agent/langchain/) |
-| 准备面试 Agent 开发岗 | 从[教程总览](docs/tutorials/README.md)看第一阶段快速上手，随后专攻第六阶段 |
-| 想拿这个当素材讲课 | [在线知识库](https://tanzhijir-04.github.io/AI-Agent-Study/) 直接打开就能当课件 |
-
-## 学习路径
-
-本知识库按 **六个阶段递进** 编排，从零基础>到面试冲刺：
-
-`
-第一阶段：基础篇 · 跑起来（第 01-04 章）
-  写个 Agent 先看看长什么样
-
-第二阶段：架构篇 · 拆引擎（第 05-08 章）
-  理解 Agent 内部是怎么工作的
-
-第三阶段：扩展篇 · 变强（第 09-11 章）
-  让 Agent 能做更多、更安全的事
-
-第四阶段：工程篇 · 做成产品（第 12-16 章）
-  从玩具 Demo 到生产可用
-
-第五阶段：实践篇 · 融会贯通（第 17-20 章）
-  框架对照 + 场景实战 + 完整项目
-
-第六阶段：面试冲刺篇（第 21-24 章）
-  学完直接去面试
-`
-
-详细学习路径和章节依赖关系见 [教程总览文档](docs/tutorials/README.md)。
-
-## 极速开始
-
-`ash
-git clone https://github.com/tanzhijir-04/AI-Agent-Study.git
-cd AI-Agent-Study
-
-node minimal_agent/agent.js
-
-# Windows 运行测试
-.\minimal_agent\run_tests.ps1
-
-# Python
-cd minimal_agent
-python langchain/basic_chain.py
-`
-
-## 项目骨架
-
-`
-AI-Agent-Study/
-├── docs/
-│   ├── INDEX.md              # 文档索引（24 章 + 5 附录）
-│   └── tutorials/            # 六个阶段、24 章教程 + 附录
-│       ├── README.md         # 教程总览（推荐从这个文件开始）
-│       ├── 01-llm-foundation/
-│       ├── ...
-│       └── 24-whiteboard-coding/
-├── minimal_agent/
-│   ├── agent.js              # 基础 Agent（即将重构为 react_loop.js）
-│   ├── agent_v2.js           # 带 Memory 的 v2
-│   ├── plan_mode.js          # Plan Mode
-│   ├── multi_agent_system.js
-│   ├── loop_control.js + workflow_engine.js
-│   ├── langchain/            # Python 示例
-│   ├── demos/
-│   └── tests/
-└── asset/
-    └── icon.svg
-`
-
-完整结构见 [AGENTS.md](AGENTS.md)。
-
-## 学习进度
-
-| 阶段 | 章节 | 状态 |
-|------|------|------|
-| 基础篇 | 01 LLM 基础 → 04 Plan Mode | ✅ 4/4 章已就绪（01 图文完成，02 重构完成） |
-| 架构篇 | 05 上下文 → 08 Multi-agent | ✅ 4/4 章已就绪（05-06 图文完成，07-08 已整合） |
-| 扩展篇 | 09 Skills → 11 安全 | ✅ 3/3 章已就绪（09-11 图文完成） |
-| 工程篇 | 12 后台 → 16 部署 | ✅ 5/5 章已就绪（12-16 图文完成） |
-| 实践篇 | 17 LangChain → 20 综合实践 | ✅ 2/4 章已就绪（17 图文完成，18 图文完成，19-20 框架就绪） |
-| 面试篇 | 21 面试题 → 24 手写代码 | 📅 4 章均为新建 |
-| 附录 | A Claude Arch → E 排错手册 | ✅ 1/5 章已就绪（E 新建） |
-
-✅ 已有可读内容 · 🔄 重构/扩展中 · 📅 待写
-
-## 推荐资源
-
-- [Claude Code 文档](https://docs.anthropic.com/claude-code)
-- [OpenAI Codex 文档](https://platform.openai.com/docs/codex)
-- [MCP 协议](https://modelcontextprotocol.io)
-- [LangChain 文档](https://python.langchain.com/)
-- [LangGraph 文档](https://langchain-ai.github.io/langgraph/)
-
----
-
-<div align="center">
-
-有问题开 Issue，想一起写发 PR。<br>
-<a href="https://space.bilibili.com/15586839">B站主页</a> · <a href="https://tanzhijir-04.github.io/AI-Agent-Study/">在线知识库</a>
-
-</div>
-
-*2026年7月18日 · 结构升级：24 章 6 阶段 + 面试冲刺*
-*2026年7月18日 · 图文并茂：55+ 张配图覆盖全部 16 个已就绪章节*
