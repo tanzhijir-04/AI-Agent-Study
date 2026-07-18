@@ -37,7 +37,7 @@ async function runTests() {
   console.log("\n## Test 2: SKILL.md 文件发现");
   const discovery = new SkillDiscovery();
   discovery.setLogger({ log: () => {}, warn: () => {}, error: () => {} });
-  discovery.addSearchDirectory("C:/Users/20300/Desktop/AI-Agent-Study/skills/example-skills");
+  discovery.addSearchDirectory("C:/Users/20300/Desktop/agentbase/skills/example-skills");
   const discovered = discovery.discoverSkills();
   assert(discovered.length >= 5, "发现至少5个示例技能");
   assert(discovery.listSkills().length >= 5, "listSkills 返回正确数量");

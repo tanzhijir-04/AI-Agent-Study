@@ -39,7 +39,7 @@ constructor(workingDirectory = '.') {
 ```
 
 - `workingDirectory = '.'`：默认在当前文件夹干活，`'.'` 就是"当前目录"的意思
-- `this.workingDirectory = path.resolve(...)`：把路径变成**完整的绝对路径**（比如把 `'.'` 变成 `'C:\Users\20300\Desktop\AI-Agent-Study\minimal_agent'`），防止出错
+- `this.workingDirectory = path.resolve(...)`：把路径变成**完整的绝对路径**（比如把 `'.'` 变成 `'C:\Users\20300\Desktop\agentbase\minimal_agent'`），防止出错
 - `this.history = []`：准备一个空列表，用来**记录你每次做了什么操作**（像日记本）
 
 ---

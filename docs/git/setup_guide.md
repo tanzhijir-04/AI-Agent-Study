@@ -15,7 +15,7 @@
 ### 步骤2：进入项目目录
 
 ```bash
-cd C:\Users\20300\Desktop\AI-Agent-Study
+cd C:\Users\20300\Desktop\agentbase
 ```
 
 ### 步骤3：初始化Git仓库
@@ -40,7 +40,7 @@ git commit -m "🎉 初始提交：AI Agent学习资源库"
 
 1. 访问 https://github.com/new
 2. 填写仓库信息：
-   - **Repository name**: `AI-Agent-Study`
+   - **Repository name**: `agentbase`
    - **Description**: `AI Agent学习资源库 - 从零开始学习AI Agent开发`
    - **Public/Private**: 选择你喜欢的
    - **不要**勾选 "Initialize this repository with a README"
@@ -52,10 +52,10 @@ git commit -m "🎉 初始提交：AI Agent学习资源库"
 
 ```bash
 # HTTPS方式（推荐）
-git remote add origin https://github.com/YOUR_USERNAME/AI-Agent-Study.git
+git remote add origin https://github.com/YOUR_USERNAME/agentbase.git
 
 # 或者SSH方式
-git remote add origin git@github.com:YOUR_USERNAME/AI-Agent-Study.git
+git remote add origin git@github.com:YOUR_USERNAME/agentbase.git
 ```
 
 **注意**：将 `YOUR_USERNAME` 替换为你的GitHub用户名
@@ -78,7 +78,7 @@ git push -u origin main
 你的仓库包含以下文件：
 
 ```
-AI-Agent-Study/
+agentbase/
 ├── minimal_agent/              # 最小Coding Agent实现
 │   ├── agent.js               # JavaScript版本
 │   ├── agent.py               # Python版本

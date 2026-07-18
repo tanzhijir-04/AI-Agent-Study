@@ -485,7 +485,7 @@ def g_ch16():
 
 # Save all
 def save_all():
-    out = r"C:\Users\20300\Desktop\AI-Agent-Study\assets"
+    out = r"C:\Users\20300\Desktop\agentbase\assets"
     os.makedirs(out, exist_ok=True)
     fns = [
         (g_ch10, "10-mcp-01-unified-interface.png"),

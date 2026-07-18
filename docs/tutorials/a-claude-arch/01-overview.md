@@ -709,7 +709,7 @@
  ## 参考
  
  - 源码仓库：C:\Users\20300\Desktop\claude-code
- - 学习项目：C:\Users\20300\Desktop\AI-Agent-Study
+ - 学习项目：C:\Users\20300\Desktop\agentbase
  - 对应学习进度中的 [x] 标记特性
  
  ---

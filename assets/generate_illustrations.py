@@ -301,7 +301,7 @@ def g17():
     return img
 
 def save_all():
-    out = r"C:\Users\20300\Desktop\AI-Agent-Study\assets"
+    out = r"C:\Users\20300\Desktop\agentbase\assets"
     os.makedirs(out, exist_ok=True)
     fns = [
         (g01,"17-langchain-intro-01-glue-vs-compose.png"),

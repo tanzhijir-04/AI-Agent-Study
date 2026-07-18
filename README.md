@@ -40,7 +40,7 @@ python langchain/basic_chain.py
 ## 📁 项目结构
 
 ```
-AI-Agent-Study/
+agentbase/
 ├── README.md                           # 项目主页（本文件）
 ├── AGENTS.md                           # 贡献者指南
 ├── index.html                          # 📚 在线知识库网页（浏览器打开）

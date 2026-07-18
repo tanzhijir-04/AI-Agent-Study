@@ -63,7 +63,7 @@ async function runTests() {
   console.log("\n## Test 5: 文件插件发现");
   const ps3 = new PluginSystem();
   ps3.setLogger({ log: () => {}, warn: () => {}, error: () => {} });
-  ps3.addPluginDirectory("C:/Users/20300/Desktop/AI-Agent-Study/plugins");
+  ps3.addPluginDirectory("C:/Users/20300/Desktop/agentbase/plugins");
   const discovered = ps3.discoverPlugins();
   assert(discovered.length >= 2, "发现至少2个插件（text-processing, network-tools, dev-tools）");
 

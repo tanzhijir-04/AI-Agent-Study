@@ -2,7 +2,7 @@
  
  这一章用仓库里的 `agent_v2.js` 作为样本，看一个真实的 Harness 是怎么搭建的。
  
- 完整的源码在 [minimal_agent/agent_v2.js](https://github.com/tanzhijir-04/AI-Agent-Study/blob/main/minimal_agent/agent_v2.js)。
+ 完整的源码在 [minimal_agent/agent_v2.js](https://github.com/tanzhijir-04/agentbase/blob/main/minimal_agent/agent_v2.js)。
  
  ## 整体架构
  

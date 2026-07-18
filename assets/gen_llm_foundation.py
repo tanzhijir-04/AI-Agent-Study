@@ -587,7 +587,7 @@ def g_circuit_breaker():
 
 
 def save_all():
-    out = r"C:\Users\20300\Desktop\AI-Agent-Study\assets"
+    out = r"C:\Users\20300\Desktop\agentbase\assets"
     os.makedirs(out, exist_ok=True)
     fns = [
         (g_token_cutting,     "01-token-basics-01-token-cutting.png"),

@@ -76,18 +76,18 @@ Write-Host "📤 接下来同步到GitHub：" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "1. 在GitHub上创建新仓库：" -ForegroundColor White
 Write-Host "   - 访问 https://github.com/new" -ForegroundColor Gray
-Write-Host "   - 仓库名: AI-Agent-Study" -ForegroundColor Gray
+Write-Host "   - 仓库名: agentbase" -ForegroundColor Gray
 Write-Host "   - 描述: AI Agent学习资源库" -ForegroundColor Gray
 Write-Host "   - 选择 Public 或 Private" -ForegroundColor Gray
 Write-Host "   - 不要勾选 'Initialize this repository with a README'" -ForegroundColor Gray
 Write-Host "   - 点击 'Create repository'" -ForegroundColor Gray
 Write-Host ""
 Write-Host "2. 复制仓库URL（HTTPS或SSH）" -ForegroundColor White
-Write-Host "   HTTPS: https://github.com/YOUR_USERNAME/AI-Agent-Study.git" -ForegroundColor Gray
-Write-Host "   SSH: git@github.com:YOUR_USERNAME/AI-Agent-Study.git" -ForegroundColor Gray
+Write-Host "   HTTPS: https://github.com/YOUR_USERNAME/agentbase.git" -ForegroundColor Gray
+Write-Host "   SSH: git@github.com:YOUR_USERNAME/agentbase.git" -ForegroundColor Gray
 Write-Host ""
 Write-Host "3. 运行以下命令同步：" -ForegroundColor White
-Write-Host '   git remote add origin https://github.com/YOUR_USERNAME/AI-Agent-Study.git' -ForegroundColor Cyan
+Write-Host '   git remote add origin https://github.com/YOUR_USERNAME/agentbase.git' -ForegroundColor Cyan
 Write-Host '   git branch -M main' -ForegroundColor Cyan
 Write-Host '   git push -u origin main' -ForegroundColor Cyan
 Write-Host ""

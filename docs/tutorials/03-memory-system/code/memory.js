@@ -55,7 +55,7 @@
  *     "theme": "dark"
  *   },
  *   "learnedKnowledge": [
- *     { key: "项目名", value: "AI-Agent-Study" }
+ *     { key: "项目名", value: "agentbase" }
  *   ],
  *   "projectInfo": {
  *     "created": "2026-07-10",

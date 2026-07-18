@@ -50,7 +50,7 @@ async function main() {
   printSep("Part 2: 从 skills/ 目录发现 SKILL.md");
 
   const discovery = new SkillDiscovery();
-  discovery.addSearchDirectory("C:/Users/20300/Desktop/AI-Agent-Study/skills/example-skills");
+  discovery.addSearchDirectory("C:/Users/20300/Desktop/agentbase/skills/example-skills");
   const discovered = discovery.discoverSkills();
 
   console.log("\n  发现 " + discovered.length + " 个技能：");
@@ -103,7 +103,7 @@ async function main() {
   printSep("Part 5: Plugin 发现与加载");
 
   const ps = new PluginSystem();
-  ps.addPluginDirectory("C:/Users/20300/Desktop/AI-Agent-Study/plugins");
+  ps.addPluginDirectory("C:/Users/20300/Desktop/agentbase/plugins");
   const pluginNames = ps.discoverPlugins();
 
   console.log("\n  发现 " + pluginNames.length + " 个插件：");

@@ -7,7 +7,7 @@
 ## 📁 项目结构
 
 ```
-AI-Agent-Study/
+agentbase/
 ├── README.md                           # 项目主页
 ├── AGENTS.md                           # 本文件（贡献者指南）
 ├── docs/                               # 文档目录
